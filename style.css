@@ -1,0 +1,303 @@
+@font-face {
+  font-family: 'Madeonmactrackpad-Regular';
+  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Madeonmactrackpad-Regular';
+}
+
+body {
+  background: white;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 25px;
+  padding-bottom: 20px;
+  font-family: 'Madeonmactrackpad-Regular';
+}
+
+.container {
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+header {
+  background: #e1e1e9;
+  color: black;
+  padding: 15px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.2rem;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  opacity: 0.8;
+  font-weight: 300;
+}
+
+.app-body {
+  padding: 25px;
+}
+
+.input-container {
+  display: flex;
+  margin-bottom: 25px;
+}
+
+#new-task {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+#new-task:focus {
+    border: none;
+    border-bottom: 2px solid #e1e1e9;
+}
+
+#add-task {
+  background-image: url('Icons/add-button.png');
+  border: none;
+  background-size: 30px 30px;
+  padding: 25px;
+  background-repeat: no-repeat;
+  transition: background 0.3s;
+  background-position: center;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+#add-task:hover {
+  background-color: transparent;
+  background-image: url('Icons/add-button.png');
+  background-size: 27px 27px;
+  background-position: center;
+  background-repeat: no-repeat;
+
+}
+
+#task-list {
+  list-style-type: none;
+}
+
+.task-item {
+  background: #e1e1e9;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.task-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.custom-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-checkbox-wrapper input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.custom-checkbox {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url('Icons/unchecked-box.png');
+  background-size: cover;
+  margin-right: 12px;
+  transition: background-image 0.2s ease;
+}
+
+.custom-checkbox-wrapper input[type="checkbox"]:checked + .custom-checkbox {
+  background-image: url('Icons/checked-box.png');
+}
+
+.task-text {
+  flex: 1;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+
+.task-text.completed {
+  text-decoration: line-through;
+  color: #6c757d;
+  opacity: 0.7;
+}
+
+.delete-btn {
+  width: 20px;
+  height: 20px;
+  border: none;
+  background-image: url('Icons/delete-button.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: transparent;
+  cursor: pointer;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.task-item:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  transform: scale(1.1);
+}
+.buttons{
+  text-align: right;
+}
+.tags-btn {
+  width: 30px;
+  height: 30px;
+  background-image: url('Icons/tag-button.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+  background-size: 30px 30px;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+.tags-btn:hover{
+  transform: scale(1.1);
+}
+.settings-btn {
+  width: 30px;
+  height: 30px;
+  background-image: url('Icons/settings-button.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+  background-size: 30px 30px;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+.settings-btn:hover{
+  transform: scale(1.1);
+}
+.history-btn {
+  width: 30px;
+  height: 30px;
+  background-image: url('Icons/calendar.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+  background-size: 30px 30px;
+  outline: none;
+  transition: transform 0.2s ease;
+}
+.history-btn:hover{
+  transform: scale(1.1);
+}
+.countdown-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+#countdown-display {
+    font-size: 2em;
+    margin: 15px 0;
+    background: #f0f0f0;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 10px;
+}
+
+#countdown-message {
+    font-size: 1.2em;
+    color: #d9534f;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: #6c757d;
+}
+
+.empty-state img {
+  width: 100px;
+  opacity: 0.5;
+  margin-bottom: 20px;
+}
+
+.stats {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 500px) {
+  .container {
+    margin: 10px;
+  }
+
+  header {
+    padding: 20px 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .app-body {
+    padding: 20px 15px;
+  }
+}

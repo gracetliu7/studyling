@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Completed Tasks History</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Completed Tasks History</h1>
+        </header>
+        <main>
+            <ul id="history-list"></ul>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const historyList = document.getElementById('history-list');
+            const completedTasks = JSON.parse(localStorage.getItem('completedTasks')) || [];
+
+            if (completedTasks.length === 0) {
+                historyList.innerHTML = '<p>No tasks completed yet!</p>';
+            } else {
+                completedTasks.forEach(task => {
+                    const li = document.createElement('li');
+                    li.textContent = task;
+                    historyList.appendChild(li);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
