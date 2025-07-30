@@ -57,8 +57,25 @@ h1 {
   margin-bottom: 25px;
 }
 
-#footer{
-  border-color: transparent;
+.footer {
+  text-align: center;
+  padding: 20px;
+  color: #6c757d;
+  font-size: 0.9rem;
+}
+
+.footer button {
+  background: none;
+  border: none;
+  color: #e1e1e9;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0 10px;
+}
+
+.footer button:hover {
+  color: #000;
 }
 #new-task {
   flex: 1;
@@ -71,6 +88,22 @@ h1 {
 }
 
 #new-task:focus {
+  border: none;
+  border-bottom: 2px solid #e1e1e9;
+}
+
+#tag-input {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-bottom: 2px solid #e0e0e0;
+  font-size: 1rem;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-bottom: 15px;
+}
+
+#tag-input:focus {
   border: none;
   border-bottom: 2px solid #e1e1e9;
 }
