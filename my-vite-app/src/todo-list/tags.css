@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'Madeonmactrackpad-Regular';
+  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
+}
+* {
+  box-sizing: border-box;
+  margin: 3px;
+  padding: 1px;
+  font-family: 'Madeonmactrackpad-Regular';
+}
+h1 {
+  font-size: 24px;
+  margin: 10px 0;
+  text-align: center;
+}
+.tag-entry {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.tag-sample {
+  width: 80px;
+  padding: 5px;
+  color: black;
+  text-align: center;
+  border-radius: 4px;
+  white-space: nowrap;     
+  overflow-x: auto;        
+  max-width: 100%;
+}
+
+.color-picker {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin: 4px 0;
+}
+
+.color-swatch {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #aaa;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.color-swatch.selected {
+  border: 1px solid black;
+}
+
+.save-btn {
+  padding: 4px 8px;
+  margin-left: 6px;
+}

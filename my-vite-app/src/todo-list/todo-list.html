@@ -2,19 +2,22 @@
 <html lang="en">
 
 <head>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="todo-list.js" defer></script>
     <title>Interactive To-Do List</title>
 </head>
 
 <body>
+    <div>
     <div class="container">
         <header>
             <h1>to do list</h1>
             <p class="subtitle">one task at a time! you can do it! ♡ </p>
             <div class="buttons">
-                <button id="tags-btn" class="tags-btn"></button>
+                <button id="tags-btn" class="tags-btn"
+                    onclick="window.location.href='tags.html'"></button>
                 <button id="history-btn" class="history-btn"
                     onclick="window.location.href='todo-list-history.html'"></button>
                 <button id="settings-btn" class="settings-btn"></button>
@@ -23,8 +26,9 @@
         <div class="app-body">
             <div class="input-container">
                 <input type="text" id="new-task" placeholder="Enter a new task">
-                <button id="add-task"></button>
+                <button id="add-task" aria-label="Add task"></button>
             </div>
+                <input type="text" id="tag-input" placeholder="Enter tags (comma-separated)">
 
             <ul id="task-list"></ul>
 
@@ -34,6 +38,13 @@
             </div>
         </div>
     </div>
+    <div class="footer">
+        <p>Made with ♡ by Gracie</p>
+        <button onclick="window.location.href='../about/about-page.html'">learn more</button>
+        <p>© 2025</p>
+    </div>
+    </div>
+
 </body>
 
 </html>

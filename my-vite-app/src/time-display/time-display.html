@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clock</title>
+    <link rel="stylesheet" href="../style.css" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <div id="clock-container">
+    <div id="date">Loading date...</div>
+    <div id="clock">Loading time...</div>
+    </div>
+    <script>
+        function updateClock() {
+            const now = new Date(); // get current date and time
+            let hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            const seconds = now.getSeconds().toString().padStart(2, '0');
+
+            const ampm = hours >= 12 ? 'PM' : 'AM';
+            hours = hours % 12 || 12;
+
+            const timeString = `${hours}:${minutes}:${seconds} ${ampm}`;
+
+            document.getElementById("clock").textContent = timeString;
+        }
+        // update every second
+        setInterval(updateClock, 1000);
+        updateClock(); // call once immediately
+        function updateDate() {
+            const now = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const dateString = now.toLocaleDateString(undefined, options);
+            document.getElementById("date").textContent = dateString;
+        }
+        updateDate(); 
+    </script>
+</body>
+
+</html>
