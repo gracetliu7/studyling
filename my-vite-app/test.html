@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-button {
+            padding: 10px 20px;
+            margin: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .test-button:hover {
+            background-color: #0056b3;
+        }
+        #output {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Button Functionality Test</h1>
+    
+    <button class="test-button" onclick="testClick()">Test Click</button>
+    <button class="test-button" id="addEventListenerBtn">Test AddEventListener</button>
+    
+    <div id="output">Click a button to test functionality...</div>
+
+    <script>
+        function testClick() {
+            document.getElementById('output').innerHTML = 'onclick handler works!';
+        }
+
+        document.getElementById('addEventListenerBtn').addEventListener('click', function() {
+            document.getElementById('output').innerHTML = 'addEventListener works!';
+        });
+
+        // Test if DOM elements can be found
+        console.log('Testing DOM element access...');
+        const output = document.getElementById('output');
+        console.log('Output element found:', !!output);
+    </script>
+</body>
+</html>
