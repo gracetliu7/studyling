@@ -5,6 +5,7 @@
     <link rel="stylesheet" href="../style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../theme.js" defer></script>
     <script src="todo-list.js" defer></script>
     <title>Interactive To-Do List</title>
 </head>
@@ -16,11 +17,14 @@
             <h1>to do list</h1>
             <p class="subtitle">one task at a time! you can do it! ♡ </p>
             <div class="buttons">
-                <button id="tags-btn" class="tags-btn"
+                <button class="tags-btn"
                     onclick="window.location.href='tags.html'"></button>
-                <button id="history-btn" class="history-btn"
+                <button class="time-display-btn" 
+                    onclick="window.location.href='../time-display/time-display.html'"></button>
+                <button class="history-btn"
                     onclick="window.location.href='todo-list-history.html'"></button>
-                <button id="settings-btn" class="settings-btn"></button>
+                <button class="settings-btn" 
+                    onclick="window.location.href='../settings/settings.html'"></button>
             </div>
         </header>
         <div class="app-body">
@@ -28,7 +32,15 @@
                 <input type="text" id="new-task" placeholder="Enter a new task">
                 <button id="add-task" aria-label="Add task"></button>
             </div>
-                <input type="text" id="tag-input" placeholder="Enter tags (comma-separated)">
+            <div class="tag-input-container">
+                <input type="text" id="tag-input" placeholder="Enter tags, comma separated">
+                <div class="custom-dropdown">
+                    <button type="button" id="exist-tag-button" class="dropdown-button">or pick an existing tag</button>
+                    <div id="exist-tag-dropdown" class="dropdown-content">
+                        <div class="dropdown-placeholder">or pick an existing tag</div>
+                    </div>
+                </div>
+            </div>
 
             <ul id="task-list"></ul>
 
@@ -39,8 +51,8 @@
         </div>
     </div>
     <div class="footer">
-        <p>Made with ♡ by Gracie</p>
-        <button onclick="window.location.href='../about/about-page.html'">learn more</button>
+        <p>made with ♡ by gracie</p>
+        <button id="learn-more" onclick="window.location.href='../about/about-page.html'">learn more</button>
         <p>© 2025</p>
     </div>
     </div>

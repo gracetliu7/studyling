@@ -1,0 +1,74 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
+    --container-bg: #ffffff;
+    --header-bg: #e1e1e9;
+    --task-item-bg: #e1e1e9;
+    --border-color: #000000;
+    --input-bg: #ffffff;
+}
+
+.container {
+    padding: 10px;
+    font-family: 'Madeonmactrackpad-Regular', -apple-system;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+.container h1{
+    margin-left: 80px;
+}
+.container h2, .container h4{
+    margin-left: 120px;
+}
+#back-button {
+    background-color: var(--input-bg);
+    border: 1px var(--border-color) solid;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: auto;
+    justify-self: left;
+    font-family: "Madeonmactrackpad-Regular";
+    border-radius: 5px;
+    color: var(--text-color);
+}
+
+#light-mode, #dark-mode {
+    margin-left: 20px;
+    height: 60px;
+    width: 60px;
+    border: none;
+    cursor: pointer;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    margin: 5px;
+    transition: transform 0.2s ease;
+}
+
+.mode{
+    margin-left: 120px;
+    display: flex;
+    flex-direction: row;
+}
+.light, .dark {
+    margin: 5px 20px;
+}
+
+#light-mode {
+    background-image: url('../Icons/light-mode.jpg');
+    border: 1px var(--border-color) solid;
+}
+
+#dark-mode {
+    background-image: url('../Icons/dark-mode.jpg');
+    border: 1px var(--border-color) solid;
+}
+
+#light-mode:hover, #dark-mode:hover {
+    transform: scale(1.05);
+}

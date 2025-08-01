@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="settings.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../theme.js" defer></script>
+    <script src="settings.js" defer></script>
+    <title>Settings</title>
+</head>
+
+<body>
+    <div class="container">
+        <button id="back-button" onclick="history.back()"> back </button>
+        <h1>Settings</h1>
+        <h2>Mode: </h2>
+        <div class="mode">
+            <div class="light">
+                <button id="light-mode"></button>
+                <p> light mode</p>
+            </div>
+            <div class="dark">
+                <button id="dark-mode"></button>
+                <p>dark mode</p>
+            </div>
+        </div>
+        <h4 onclick="window.location.href='../about/about-page.html'"> to request themes, check the about page!</h4>
+    </div>
+</body>

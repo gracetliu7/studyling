@@ -1,27 +1,38 @@
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --container-bg: #ffffff;
+  --header-bg: #e1e1e9;
+  --task-item-bg: #e1e1e9;
+  --border-color: #000000;
+  --input-bg: #ffffff;
+}
+
 /* style.css */
 
 body {
   font-family: 'Madeonmactrackpad-Regular';
-  background-color: #f8f9fa;
+  background-color: var(--bg-color);
   margin: 0;
   padding: 20px;
-  color: #333;
+  color: var(--text-color);
 }
 
 .container {
   min-width: 800px;
   margin: 0 auto;
-  background: rgb(255, 255, 255);
+  background: var(--container-bg);
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0,0,0,0.1);
   padding: 25px;
+  color: var(--text-color);
 }
 
 header h1 {
   margin: 0 0 20px;
   font-weight: 700;
   font-size: 2rem;
-  color: #222;
+  color: var(--text-color);
   text-align: center;
 }
 
@@ -36,22 +47,22 @@ main {
 }
 
 #history-list li {
-  background-color: #e9ecef;
+  background-color: var(--task-item-bg);
   border-radius: 8px;
   padding: 12px 16px;
   margin-bottom: 12px;
   font-size: 1.1rem;
-  color: #495057;
+  color: var(--text-color);
   transition: background-color 0.3s ease;
 }
 
 #history-list li:hover {
-  background-color: #dee2e6;
+  background-color: var(--header-bg);
 }
 
 #history-list p {
   font-style: italic;
-  color: #6c757d;
+  color: var(--text-color);
   text-align: center;
   margin-top: 40px;
   font-size: 1.2rem;

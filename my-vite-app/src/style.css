@@ -1,17 +1,39 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('../Madeonmactrackpad-Regular.ttf') format('truetype');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --bg-color: #ffffff;
+  --text-color: #000000;
+  --container-bg: #ffffff;
+  --header-bg: #e1e1e9;
+  --task-item-bg: #e1e1e9;
+  --border-color: #000000;
+  --input-bg: #ffffff;
+  --add-img: url("Icons/add-button.png");
+  --calendar-img: url("Icons/calendar.png");
+  --checked-img: url("Icons/checked-box.png");
+  --delete-img: url("Icons/delete.png");
+  --unchecked-img: url("Icons/unchecked-box.png");
+  --settings-img: url("Icons/settings-button.png");
+  --tag-img: url("Icons/tag-button.png");
+  --time-display-img: url("Icons/time-display.png");
+
 }
 
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  font-family: 'Madeonmactrackpad-Regular';
+  font-family: 'Madeonmactrackpad-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
 body {
-  background: white;
+  background: var(--bg-color);
   min-height: 100px;
   min-width: 1000px;
   display: flex;
@@ -19,23 +41,27 @@ body {
   align-items: center;
   padding: 100px;
   padding-bottom: 20px;
-  font-family: 'Madeonmactrackpad-Regular';
+  font-family: 'Madeonmactrackpad-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  color: var(--text-color);
 }
 
 .container {
-  background-color: white;
+  background-color: var(--container-bg);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  border: 0.7px solid var(--border-color);
   width: 100%;
-  max-width: 500px;
+  min-width: 500px;
   overflow: hidden;
+  color: var(--text-color);
 }
 
 header {
-  background: #e1e1e9;
-  color: black;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin-top: 20px;
   padding: 15px;
   text-align: center;
+  border-bottom: 0.7px solid var(--border-color);
 }
 
 h1 {
@@ -49,25 +75,35 @@ h1 {
 }
 
 .app-body {
-  padding: 25px;
+  padding: 15px 25px 25px 25px;
 }
 
 .input-container {
   display: flex;
-  margin-bottom: 25px;
+  margin-bottom: 10px;
 }
 
-#footer{
-  border-color: transparent;
+.tag-input-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
 }
+
+.footer{
+  border-color: transparent;
+  margin-top: 15px
+}
+
 #new-task {
   flex: 1;
-  padding: 14px;
+  padding: 0px 14px 0px 14px;
   border: none;
-  border-bottom: 2px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
   font-size: 1rem;
   outline: none;
   transition: border-color 0.3s;
+  background-color: var(--input-bg);
+  color: var(--text-color);
 }
 
 #new-task:focus {
@@ -76,7 +112,7 @@ h1 {
 }
 
 #add-task {
-  background-image: url('Icons/add-button.png');
+  background-image: var(--add-img);
   border: none;
   width: 30px;
   height: 30px;
@@ -91,7 +127,7 @@ h1 {
 
 #add-task:hover {
   background-color: transparent;
-  background-image: url('Icons/add-button.png');
+  background-image: var(--add-img);
   background-size: 27px 27px;
   background-position: center;
   background-repeat: no-repeat;
@@ -103,13 +139,14 @@ h1 {
 }
 
 .task-item {
-  background: #e1e1e9;
+  background: var(--task-item-bg);
   border-radius: 8px;
   padding: 15px;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
+  color: var(--text-color);
 }
 
 .task-item:hover {
@@ -135,14 +172,14 @@ h1 {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-image: url('Icons/unchecked-box.png');
+  background-image: var(--unchecked-img);
   background-size: cover;
   margin-right: 12px;
   transition: background-image 0.2s ease;
 }
 
 .custom-checkbox-wrapper input[type="checkbox"]:checked+.custom-checkbox {
-  background-image: url('Icons/checked-box.png');
+  background-image: var(--checked-img);
 }
 
 .task-text {
@@ -156,12 +193,27 @@ h1 {
   color: #6c757d;
   opacity: 0.7;
 }
+.tags-btn, .time-display-btn, .history-btn, .settings-btn {
+  width: 30px;
+  height: 30px;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  font-size: 0;
+  line-height: 0;
+  background-size: 30px 30px;
+  outline: none;
+  transition: transform 0.2s ease;
+  padding: 0;
+}
 
 .delete-btn {
   width: 20px;
   height: 20px;
   border: none;
-  background-image: url('Icons/delete-button.png');
+  background-image: var(--delete-img);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -175,7 +227,7 @@ h1 {
   opacity: 1;
 }
 
-.delete-btn:hover {
+.delete-btn:hover, .tags-btn:hover, .time-display-btn:hover, .history-btn:hover, .settings-btn:hover {
   transform: scale(1.1);
 }
 
@@ -184,66 +236,95 @@ h1 {
 }
 
 .tags-btn {
-  width: 30px;
-  height: 30px;
-  background-image: url('Icons/tag-button.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-size: 0;
-  line-height: 0;
-  background-size: 30px 30px;
-  outline: none;
-  transition: transform 0.2s ease;
-  padding: 0;
+  background-image: var(--tag-img);
 }
 
-.tags-btn:hover {
-  transform: scale(1.1);
+#tag-input {
+  padding: 5px 20px;
+  width: 50%;
+  border-radius: 3px;
+  border: 0.7px var(--border-color) solid;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+}
+
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.dropdown-button {
+  padding: 5px 20px;
+  width: 100%;
+  border-radius: 3px;
+  border: 0.7px var(--border-color) solid;
+  background-color: var(--input-bg);
+  color: var(--text-color);
+  cursor: pointer;
+  font-family: 'Madeonmactrackpad-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  outline: none;
+  font-size: 1em;
+  text-align: left;
+  min-width: 200px;
+}
+
+.dropdown-button:hover {
+  background-color: var(--task-item-bg);
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: var(--input-bg);
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 3px;
+  border: 0.7px var(--border-color) solid;
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.dropdown-content.show {
+  display: block;
+}
+
+.dropdown-placeholder {
+  padding: 10px 15px;
+  color: var(--text-color);
+  font-family: 'Madeonmactrackpad-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-option {
+  padding: 10px 15px;
+  color: var(--text-color);
+  font-family: 'Madeonmactrackpad-Regular', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-option:hover {
+  background-color: var(--header-bg);
+}
+
+.dropdown-option:last-child {
+  border-bottom: none;
 }
 
 .settings-btn {
-  width: 30px;
-  height: 30px;
-  background-image: url('Icons/settings-button.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-size: 0;
-  line-height: 0;
-  background-size: 30px 30px;
-  outline: none;
-  transition: transform 0.2s ease;
-  padding: 0;
-}
-
-.settings-btn:hover {
-  transform: scale(1.1);
+  background-image: var(--settings-img);
 }
 
 .history-btn {
-  width: 30px;
-  height: 30px;
-  background-image: url('Icons/calendar.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  cursor: pointer;
-  border: none;
-  background-color: transparent;
-  font-size: 0;
-  line-height: 0;
-  background-size: 30px 30px;
-  outline: none;
-  transition: transform 0.2s ease;
-  padding: 0;
+  background-image: var(--calendar-img);
 }
 
-.history-btn:hover {
-  transform: scale(1.1);
+.time-display-btn {
+  background-image: var(--time-display-img);
 }
 
 .tag {
@@ -254,6 +335,18 @@ h1 {
     margin: 2px 4px 0 0;
     color: black;
 }
+
+
+#learn-more {
+  border-radius: 4px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px 7px;
+  border: 1px var(--text-color) solid;
+}
+
 .tag-container {
     margin-top: 4px;
 }
@@ -297,22 +390,6 @@ h1 {
   border-top: 1px solid #eee;
   color: #6c757d;
   font-size: 0.9rem;
-}
-#clock-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 12px;
-  border: 1px solid #000;
-  padding: 16px;
-}
-#clock {
-      font-size: 50px;
-      padding: 10px;
-}
-#date {
-  font-size: 20px;
-
 }
 
 @keyframes fadeIn {

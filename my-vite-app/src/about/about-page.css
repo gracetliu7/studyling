@@ -1,0 +1,55 @@
+.container {
+    padding: 10px;
+    font-family: 'Madeonmactrackpad-Regular', -apple-system;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--container-bg);
+}
+
+#back-button {
+    background-color: transparent;
+    border: 1px var(--border-color) solid;
+    cursor: pointer;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: auto;
+    justify-self: left;
+    font-family: "Madeonmactrackpad-Regular";
+    border-radius: 5px;
+    color: var(--text-color);
+}
+.about-content h1{
+    color: var(--text-color);
+    font-size: 40px;
+    margin-left: 80px;
+    margin-bottom: 20px;
+}
+
+.about-content h4 {
+    font-size: 20px;
+    color: var(--text-color);
+    margin-left: 120px;
+}
+
+.color-swatches {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-left: 120px;
+    margin-top: 10px;
+}
+
+.color-swatch {
+    border: 0.7px var(--border-color) solid;
+    padding: 10px;
+    border-radius: 5px;
+    font-family: "Madeonmactrackpad-Regular";
+    font-size: 14px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.color-swatch:hover, .about-content a:hover {
+    transform: scale(1.05);
+}
