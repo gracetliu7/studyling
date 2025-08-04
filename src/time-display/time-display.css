@@ -1,0 +1,22 @@
+#clock-container {
+    display: flex;
+    flex-direction: column;
+    border-radius: 12px;
+    border: 0.7px solid var(--time-display);
+    padding: 5px 12px;
+    background-color: transparent;
+    margin: 0px;
+    overflow: hidden;
+    justify-items: center;
+
+  }
+  #clock {
+        font-size: 40px;
+        padding: 10px;
+        color: var(--time-display);
+  }
+  #date {
+    font-size: 20px;
+    padding: 0px 20px;
+    color: var(--time-display);
+  }

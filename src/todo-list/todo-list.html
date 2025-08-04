@@ -7,24 +7,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="../theme.js" defer></script>
     <script src="todo-list.js" defer></script>
+    <script src="../time-display/time-display-theme.js" defer></script>
     <title>Interactive To-Do List</title>
 </head>
 
 <body>
     <div>
+    <div id="clock-wrapper" style="display: flex; justify-content: center; margin-top: 0px;">
+        <iframe src="../time-display/time-display.html" id="clock-display" style="display:none; overflow: hidden;"
+            height="120px" width="600px"></iframe>
+    </div>
     <div class="container">
         <header>
             <h1>to do list</h1>
             <p class="subtitle">one task at a time! you can do it! ♡ </p>
             <div class="buttons">
-                <button class="tags-btn"
-                    onclick="window.location.href='tags.html'"></button>
-                <button class="time-display-btn" 
-                    onclick="window.location.href='../time-display/time-display.html'"></button>
-                <button class="history-btn"
-                    onclick="window.location.href='todo-list-history.html'"></button>
-                <button class="settings-btn" 
-                    onclick="window.location.href='../settings/settings.html'"></button>
+                <button class="tags-btn" onclick="window.location.href='tags.html'"></button>
+                <button class="time-display-btn" id="time-display"></button>
+                <button class="history-btn" onclick="window.location.href='todo-list-history.html'"></button>
+                <button class="settings-btn" onclick="window.location.href='../settings/settings.html'"></button>
             </div>
         </header>
         <div class="app-body">
@@ -46,6 +47,7 @@
 
             <div class="stats">
                 <span id="total-tasks">Total: 0 tasks</span>
+                <button id="clear-tasks">Clear all completed tasks</button>
                 <span id="completed-tasks">Completed: 0</span>
             </div>
         </div>

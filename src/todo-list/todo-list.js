@@ -5,15 +5,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const taskList = document.getElementById('task-list');
     const totalTasksSpan = document.getElementById('total-tasks');
     const completedTasksSpan = document.getElementById('completed-tasks');
+    const clearTasksButton = document.getElementById('clear-tasks');
+
 
     // Check if all required elements exist
-    if (!newTaskInput || !addTaskButton || !taskList || !totalTasksSpan || !completedTasksSpan) {
+    if (!newTaskInput || !addTaskButton || !taskList || !totalTasksSpan || !completedTasksSpan || !clearTasksButton) {
         console.error('Required DOM elements not found:', {
             newTaskInput: !!newTaskInput,
             addTaskButton: !!addTaskButton,
             taskList: !!taskList,
             totalTasksSpan: !!totalTasksSpan,
-            completedTasksSpan: !!completedTasksSpan
+            completedTasksSpan: !!completedTasksSpan,
+            clearTasksButton: !!clearTasksButton
         });
         return;
     }
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function () {
             // Assign the next available color from the palette
             const usedColors = Object.values(tagColors);
             let availableColor = colors[0]; // Default to first color
-            
+
             // Find the first unused color
             for (let color of colors) {
                 if (!usedColors.includes(color)) {
@@ -39,7 +42,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     break;
                 }
             }
-            
+
             tagColors[tag] = availableColor;
             localStorage.setItem('tagColors', JSON.stringify(tagColors));
         }
@@ -51,8 +54,26 @@ document.addEventListener('DOMContentLoaded', function () {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
 
+    if (clearTasksButton) {
+        clearTasksButton.addEventListener('click', function () {
+            tasks = loadTasksFromLocalStorage();
+            tasks = tasks.filter(task => !task.completed); // Keep only incomplete
+            saveTasksToLocalStorage(tasks);
+            renderTasks();
+            updateTaskCounters();
+            sortTasks();
+            updateExistingTagsDropdown();
+        });
+    }
+
     function loadTasksFromLocalStorage() {
         return JSON.parse(localStorage.getItem('tasks')) || [];
+    }
+
+    function saveTagsToLocalStorage(newTags) {
+        const existing = JSON.parse(localStorage.getItem('allTags')) || [];
+        const merged = Array.from(new Set([...existing, ...newTags]));
+        localStorage.setItem('allTags', JSON.stringify(merged));
     }
 
     function createTaskElement(taskObj, index) {
@@ -99,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Event listeners for checkbox and delete button
         checkbox.addEventListener('change', function () {
-            const tasks = loadTasksFromLocalStorage();
+            tasks = loadTasksFromLocalStorage();
             tasks[index].completed = this.checked;
             saveTasksToLocalStorage(tasks);
             updateTaskCounters();
@@ -108,43 +129,40 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         deleteButton.addEventListener('click', function () {
-            const tasks = loadTasksFromLocalStorage();
+            tasks = loadTasksFromLocalStorage();
             tasks.splice(index, 1);
             saveTasksToLocalStorage(tasks);
-            updateTaskCounters();
             renderTasks();
+            updateTaskCounters();
+
         });
 
         return taskItem;
     }
-
     function addTask() {
-        console.log('addTask function called');
         const taskText = newTaskInput.value.trim();
         const tagText = document.getElementById('tag-input').value.trim();
         const tags = tagText ? tagText.split(',').map(tag => tag.trim()).filter(tag => tag !== '') : [];
-
-        console.log('Task text:', taskText);
-        console.log('Tag text:', tagText);
-
+    
         if (taskText === '') {
             alert('Please enter a task!');
             return;
         }
-
+    
         const taskObj = {
             text: taskText,
             tags: tags,
             completed: false
         };
-
-        const tasks = loadTasksFromLocalStorage();
+    
+        let tasks = loadTasksFromLocalStorage();
         tasks.push(taskObj);
         saveTasksToLocalStorage(tasks);
-
+        saveTagsToLocalStorage(tags); // <-- merge new tags into allTags properly
+    
         newTaskInput.value = '';
         document.getElementById('tag-input').value = '';
-
+    
         updateTaskCounters();
         renderTasks();
         updateExistingTagsDropdown();
@@ -153,7 +171,7 @@ document.addEventListener('DOMContentLoaded', function () {
     function renderTasks() {
         taskList.innerHTML = '';
 
-        const tasks = loadTasksFromLocalStorage();
+        tasks = loadTasksFromLocalStorage();
         tasks.forEach((task, index) => {
             const taskEl = createTaskElement(task, index);
             taskList.appendChild(taskEl);
@@ -161,7 +179,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function updateTaskCounters() {
-        const tasks = loadTasksFromLocalStorage();
+        tasks = loadTasksFromLocalStorage();
         const totalTasks = tasks.length;
         const completedTasks = tasks.filter(t => t.completed).length;
 
@@ -196,49 +214,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
         tasks.forEach(task => taskList.appendChild(task)); // re-append in new order
     }
+    
+function updateExistingTagsDropdown() {
+    const dropdownContent = document.getElementById('exist-tag-dropdown');
+    if (!dropdownContent) return;
 
-    function updateExistingTagsDropdown() {
-        const dropdownContent = document.getElementById('exist-tag-dropdown');
-        if (!dropdownContent) return;
+    dropdownContent.innerHTML = '<div class="dropdown-placeholder">or pick an existing tag</div>';
 
-        // Clear existing content except the placeholder
-        dropdownContent.innerHTML = '<div class="dropdown-placeholder">or pick an existing tag</div>';
+    const allTags = JSON.parse(localStorage.getItem('allTags')) || [];
 
-        // Get all unique tags from existing tasks
-        const tasks = loadTasksFromLocalStorage();
-        const allTags = new Set();
-        
-        tasks.forEach(task => {
-            task.tags.forEach(tag => allTags.add(tag));
+    allTags.forEach(tag => {
+        const option = document.createElement('div');
+        option.className = 'dropdown-option';
+        option.textContent = tag;
+
+        option.addEventListener('click', function () {
+            const currentTagInput = document.getElementById('tag-input');
+            const currentTags = currentTagInput.value.trim();
+
+            // Avoid duplicate tags in input
+            const currentTagList = currentTags ? currentTags.split(',').map(t => t.trim()) : [];
+            if (!currentTagList.includes(tag)) {
+                currentTagList.push(tag);
+                currentTagInput.value = currentTagList.join(', ');
+            }
+
+            dropdownContent.classList.remove('show');
         });
 
-        // Add options for each unique tag
-        allTags.forEach(tag => {
-            const option = document.createElement('div');
-            option.className = 'dropdown-option';
-            option.textContent = tag;
-            option.addEventListener('click', function() {
-                const currentTagInput = document.getElementById('tag-input');
-                const currentTags = currentTagInput.value.trim();
-                
-                if (currentTags) {
-                    // Add to existing tags if there are any
-                    currentTagInput.value = currentTags + ', ' + tag;
-                } else {
-                    // Set as the only tag if none exist
-                    currentTagInput.value = tag;
-                }
-                
-                // Close dropdown
-                dropdownContent.classList.remove('show');
-            });
-            dropdownContent.appendChild(option);
-        });
-    }
+        dropdownContent.appendChild(option);
+    });
+}
+    
 
+  
     // Event Listeners
     if (addTaskButton) {
-        addTaskButton.addEventListener('click', function(e) {
+        addTaskButton.addEventListener('click', function (e) {
             console.log('Add task button clicked');
             addTask();
         });
@@ -267,15 +279,15 @@ document.addEventListener('DOMContentLoaded', function () {
     // Custom dropdown functionality
     const dropdownButton = document.getElementById('exist-tag-button');
     const dropdownContent = document.getElementById('exist-tag-dropdown');
-    
+
     if (dropdownButton && dropdownContent) {
-        dropdownButton.addEventListener('click', function(e) {
+        dropdownButton.addEventListener('click', function (e) {
             e.stopPropagation();
             dropdownContent.classList.toggle('show');
         });
 
         // Close dropdown when clicking outside
-        document.addEventListener('click', function(e) {
+        document.addEventListener('click', function (e) {
             if (!dropdownButton.contains(e.target) && !dropdownContent.contains(e.target)) {
                 dropdownContent.classList.remove('show');
             }

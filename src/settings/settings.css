@@ -10,7 +10,7 @@
 
 .container {
     padding: 10px;
-    font-family: 'Madeonmactrackpad-Regular', -apple-system;
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular';
     display: flex;
     flex-direction: column;
     min-height: 100vh;

@@ -7,6 +7,7 @@
   --border-color: #000000;
   --input-bg: #ffffff;
   
+  --delete-img: url("../Icons/calendar.png");
 }
 
 @font-face {
@@ -62,6 +63,7 @@ h1 {
   white-space: nowrap;     
   overflow-x: auto;        
   max-width: 100%;
+  margin-left: 0px;
 }
 
 .color-picker {
@@ -79,6 +81,9 @@ h1 {
   cursor: pointer;
   box-sizing: border-box;
 }
+.color-swatch:hover {
+  transform: scale(1.05);
+}
 
 .color-swatch.selected {
   border: 1px solid var(--text-color);
@@ -87,4 +92,23 @@ h1 {
 .save-btn {
   padding: 4px 8px;
   margin-left: 6px;
+}
+
+.delete-tag{
+  width: 25px;
+  height: 25px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-image: var(--delete-img) !important;
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  font-size: 1.7rem;
+  margin-right: 0px;
+  color:#e1e1e9;
+}
+
+.delete-tag:hover{
+  transform: scale(1.2);
 }

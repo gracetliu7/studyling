@@ -14,28 +14,46 @@ function saveTagColors(tagColors) {
   localStorage.setItem('tagColors', JSON.stringify(tagColors));
 }
 
-function getUniqueTags(tasks) {
-  const tagSet = new Set();
-  tasks.forEach(task => {
-    task.tags.forEach(tag => tagSet.add(tag));
-  });
-  return Array.from(tagSet);
-}
 function renderTags() {
   const container = document.getElementById('tags-container');
   container.innerHTML = '';
 
   const tasks = loadTasks();
   const tagColors = loadTagColors();
-  const uniqueTags = getUniqueTags(tasks);
+  const allTags = JSON.parse(localStorage.getItem('allTags')) || [];
 
-  uniqueTags.forEach(oldTag => {
+  if (allTags.length === 0) {
+    container.innerHTML = '<p>No tags found.</p>';
+    return;
+  }
+
+  allTags.forEach(oldTag => {
     const div = document.createElement('div');
     div.className = 'tag-entry';
 
     const currentColor = tagColors[oldTag] || '#ccc';
 
-    // Editable tag text
+    const deleteIcon = document.createElement('button');
+    deleteIcon.className= 'delete-tag';
+    deleteIcon.textContent= 'X';
+
+    deleteIcon.addEventListener('click', () => {
+      if (!confirm(`Are you sure you want to delete "${oldTag}"? This can't be undone`)) return;
+
+      const updatedTasks = tasks.map(task => ({
+        ...task,
+        tags: task.tags.filter(tag => tag !== oldTag)
+      }));
+
+      const updatedAllTags = allTags.filter(tag => tag !== oldTag);
+      localStorage.setItem('allTags', JSON.stringify(updatedAllTags));
+      delete tagColors[oldTag];
+
+      saveTasks(updatedTasks);
+      saveTagColors(tagColors);
+      renderTags();
+    });
+
     const editableTag = document.createElement('div');
     editableTag.className = 'tag-sample';
     editableTag.textContent = oldTag;
@@ -45,70 +63,53 @@ function renderTags() {
     editableTag.style.outline = 'none';
     editableTag.style.cursor = 'text';
 
-    // Save tag rename on blur (when user clicks away)
     editableTag.addEventListener('blur', () => {
       const newTag = editableTag.textContent.trim();
       if (!newTag || newTag === oldTag) {
-        // Reset if empty or unchanged
         editableTag.textContent = oldTag;
         return;
       }
 
-      // Update tasks
+      if (allTags.includes(newTag)) {
+        alert(`Tag "${newTag}" already exists.`);
+        editableTag.textContent = oldTag;
+        return;
+      }
+
       const updatedTasks = tasks.map(task => ({
         ...task,
         tags: task.tags.map(tag => tag === oldTag ? newTag : tag)
       }));
 
-      // Update tag colors
-      const currentColorValue = tagColors[oldTag];
-      delete tagColors[oldTag];
-      tagColors[newTag] = currentColorValue;
+      const updatedAllTags = allTags.map(tag => tag === oldTag ? newTag : tag);
+      localStorage.setItem('allTags', JSON.stringify(updatedAllTags));
 
-      // Save and re-render
+      const color = tagColors[oldTag];
+      delete tagColors[oldTag];
+      tagColors[newTag] = color;
+
       saveTasks(updatedTasks);
       saveTagColors(tagColors);
       renderTags();
     });
 
-    // Color picker
     const colorPicker = document.createElement('div');
     colorPicker.className = 'color-picker';
-
     const predefinedColors = ['#e8c5c5', '#e3c6ac', '#ebe1b0', '#c8dbc1', '#c1d3db', '#c1c4db', '#d4c1db', '#e3ccdd'];
-    let selectedColor = currentColor;
 
-    predefinedColors.forEach(colorOption => {
+    predefinedColors.forEach(color => {
       const swatch = document.createElement('div');
       swatch.className = 'color-swatch';
-      swatch.style.backgroundColor = colorOption;
-      if (colorOption === currentColor) {
-        swatch.classList.add('selected');
-      }
+      swatch.style.backgroundColor = color;
+      if (color === currentColor) swatch.classList.add('selected');
 
       swatch.addEventListener('click', () => {
-        selectedColor = colorOption;
+        editableTag.style.backgroundColor = color;
 
-        // Update UI to show selected color
-        colorPicker.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('selected'));
-        swatch.classList.add('selected');
+        const tagName = editableTag.textContent.trim();
+        if (!tagName) return;
 
-        // Automatically save on color click:
-        const newTag = editableTag.textContent.trim();
-        if (!newTag) return;
-
-        // Update tasks
-        const updatedTasks = tasks.map(task => ({
-          ...task,
-          tags: task.tags.map(tag => tag === oldTag ? newTag : tag)
-        }));
-
-        // Update tag colors
-        delete tagColors[oldTag];
-        tagColors[newTag] = selectedColor;
-
-        // Save and re-render
-        saveTasks(updatedTasks);
+        tagColors[tagName] = color;
         saveTagColors(tagColors);
         renderTags();
       });
@@ -116,11 +117,13 @@ function renderTags() {
       colorPicker.appendChild(swatch);
     });
 
+    div.appendChild(deleteIcon);
     div.appendChild(editableTag);
     div.appendChild(colorPicker);
     container.appendChild(div);
   });
 }
+
 
 document.addEventListener('DOMContentLoaded', () => {
   renderTags();

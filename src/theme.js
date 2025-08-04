@@ -10,6 +10,8 @@ function applyTheme(theme) {
         root.style.setProperty('--task-item-bg', '#3d3d3d');
         root.style.setProperty('--border-color', '#ffffff');
         root.style.setProperty('--input-bg', '#3d3d3d');
+        root.style.setProperty('--time-display', 'white');
+
         //replace icons
 
         root.style.setProperty('--add-img', 'url("Icons/add-button-dark.png")');
@@ -34,13 +36,15 @@ function applyTheme(theme) {
         root.style.setProperty('--task-item-bg', '#e1e1e9');
         root.style.setProperty('--border-color', '#000000');
         root.style.setProperty('--input-bg', '#ffffff');
+        root.style.setProperty('--time-display', 'black');
+
         //replace icons
         root.style.setProperty('--add-img', 'url("Icons/add-button.png")');
         root.style.setProperty('--calendar-img', 'url("Icons/calendar.png")');
         root.style.setProperty('--checked-img', 'url("Icons/checked-box.png")');
         root.style.setProperty('--unchecked-img', 'url("Icons/unchecked-box.png")');
         root.style.setProperty('--delete-img', 'url("Icons/delete.png")');
-        root.style.setProperty('--setting-img', 'url("Icons/settings-button.png")');
+        root.style.setProperty('--settings-img', 'url("Icons/settings-button.png")');
         root.style.setProperty('--tag-img', 'url("Icons/tag-button.png")');
         root.style.setProperty('--time-display-img', 'url("Icons/time-display.png")');
 
