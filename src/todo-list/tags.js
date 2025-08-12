@@ -45,6 +45,13 @@ function renderTags() {
         tags: task.tags.filter(tag => tag !== oldTag)
       }));
 
+      let completedTasksHistory = JSON.parse(localStorage.getItem('completedTasksHistory')) || [];
+      completedTasksHistory = completedTasksHistory.map(task => ({
+          ...task,
+          tags: (task.tags || []).filter(tag => tag !== oldTag)
+      }));
+      localStorage.setItem('completedTasksHistory', JSON.stringify(completedTasksHistory));
+
       const updatedAllTags = allTags.filter(tag => tag !== oldTag);
       localStorage.setItem('allTags', JSON.stringify(updatedAllTags));
       delete tagColors[oldTag];

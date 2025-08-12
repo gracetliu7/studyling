@@ -1,0 +1,76 @@
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+.dropdown-button {
+    padding: 5px 20px;
+    width: 100%;
+    border-radius: 3px;
+    border: 0.7px var(--border-color) solid;
+    background-color: var(--input-bg);
+    color: gray; /*change it to the same as the other*/
+    cursor: pointer;
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    outline: none;
+    text-align: left;
+    min-width: 200px;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: var(--input-bg);
+    min-width: 200px;
+    border-radius: 3px;
+    border: 0.7px var(--border-color) solid;
+    max-height: 500px;
+    z-index: 999;
+    overflow-y: auto;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-placeholder {
+    padding: 10px 15px;
+    color: var(--text-color);
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-option {
+    padding: 10px 15px;
+    color: var(--text-color);
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.dropdown-option:hover {
+    background-color: var(--header-bg);
+}
+
+.dropdown-option:last-child {
+    border-bottom: none;
+}
+
+#tag-input {
+    padding: 5px 20px;
+    width: 70%;
+    border-radius: 3px;
+    border: 0.7px var(--border-color) solid;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+  }
+
+.tag-input-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+  margin-left: 0px;
+}

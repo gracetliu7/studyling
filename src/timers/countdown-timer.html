@@ -6,10 +6,17 @@
     <title>Countdown Timer</title>
     <link rel="stylesheet" href="timers.css">
     <script src="countdown.js" defer></script>
+    <script src="/src/theme.js" defer></script>
+
 </head>
 <body>
     <div class="countdown-container">
-    <h2>Countdown Timer</h2>
+        <div class="top">
+        <div class="back-arrow">
+        <button id="back-arrow-btn" onclick="history.back()"> ← </button>
+    </div>
+    <h2>Countdown</h2>
+    </div>
     <div class="time-display" id="countdown-display">00:00:00</div>
     <div class="time-button">
     <input type="number" id="countdown-hours" placeholder="Hours" min="0" max="10">
@@ -17,7 +24,7 @@
     <button id="start-timer">Start</button>
     <button id="pause-timer">Pause</button>
     <button id="reset-timer">Reset</button>
-    <div id="countdown-message" style="display:none;">Time’s up!</div>
+    <div id="countdown-message" style="display:none;">time’s up!</div>
     </div>
     </div>
 </body>

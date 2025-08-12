@@ -34,11 +34,19 @@ function pauseStopwatch() {
 }
 function stopStopwatch(){
     pauseStopwatch();
+    const minutes = Math.floor(totalSeconds / 60);
+    const message = {
+        type: 'UPDATE_DURATION',
+        duration: minutes
+    };
+    console.log('Sending message from stopwatch:', message);
+    window.parent.postMessage(message, '*');
+
     let hours = Math.floor(totalSeconds / 3600);
-    let minutes = Math.floor((totalSeconds % 3600) / 60);
+    let displayMinutes = Math.floor((totalSeconds % 3600) / 60);
     let seconds = totalSeconds % 60;
-    let timeRan = formatTime(hours, minutes, seconds);
-    document.getElementById("finalTime").textContent = "Stopwatch ran for: " + timeRan;
+    let timeRan = formatTime(hours, displayMinutes, seconds);
+    document.getElementById("final-time").textContent = "Stopwatch ran for: " + timeRan;
     resetStopwatch();
 }
 

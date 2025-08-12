@@ -1,5 +1,6 @@
 let countdownInterval;
 let totalSeconds = 0;
+let initialTotalSeconds = 0;
 let isPaused = false; 
 
 function formatTime(secs) {
@@ -28,6 +29,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const mins = parseInt(minutesInput.value) || 0;
 
         totalSeconds = hours * 3600 + mins * 60;
+        initialTotalSeconds = totalSeconds;
 
         if (totalSeconds <= 0) {
             alert('Please enter a valid time.');
@@ -52,6 +54,13 @@ document.addEventListener('DOMContentLoaded', () => {
             }
             if (totalSeconds <= 0) {
                 clearInterval(countdownInterval);
+                const minutes = Math.floor(initialTotalSeconds / 60);
+                const message = {
+                    type: 'UPDATE_DURATION',
+                    duration: minutes
+                };
+                console.log('Sending message from countdown:', message);
+                window.parent.postMessage(message, '*');
                 display.textContent = '00:00:00';
                 message.style.display = 'block';
             }

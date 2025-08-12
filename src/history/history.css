@@ -34,6 +34,7 @@ header h1 {
   font-size: 2rem;
   color: var(--text-color);
   text-align: center;
+  padding-bottom: 15px;
 }
 
 main {
@@ -46,6 +47,10 @@ main {
   margin: 0;
 }
 
+#history-list h2 {
+  margin: 18px 0 10px;
+}
+
 #history-list li {
   background-color: var(--task-item-bg);
   border-radius: 8px;
@@ -54,10 +59,28 @@ main {
   font-size: 1.1rem;
   color: var(--text-color);
   transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 #history-list li:hover {
   background-color: var(--header-bg);
+}
+
+.task-text {
+  flex: 1 1 auto;
+}
+
+.task-duration {
+  font-size: 0.95rem;
+  opacity: 0.8;
+  margin-left: 8px;
+}
+
+.completion-time {
+  margin-left: auto;
+  font-size: 0.95rem;
 }
 
 #history-list p {
@@ -66,4 +89,47 @@ main {
   text-align: center;
   margin-top: 40px;
   font-size: 1.2rem;
+}
+
+#back-button {
+  background-color: var(--input-bg);
+  border: 1px var(--border-color) solid;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: auto;
+  justify-self: left;
+  font-family: "Madeonmactrackpad-Regular";
+  border-radius: 5px;
+  color: var(--text-color);
+}
+
+ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.tabs {
+    margin-bottom: 0px;
+}
+
+.tabs button {
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-bottom: transparent;
+    padding: 5px 25px;
+    cursor: pointer;
+    margin-right: 5px;
+    border-radius: 4px 4px 0px 0px;
+    color: var(--text-color);
+    font-family: 'Madeonmactrackpad-Regular';
+}
+hr{
+  padding: 0px;
+  margin: 0px;
+}
+
+.tabs button.active {
+    font-weight: bold;
 }

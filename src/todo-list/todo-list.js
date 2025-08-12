@@ -1,3 +1,5 @@
+import { addTimerVisibilityToggle } from '../timers/timer-visibility.js';
+
 document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements
     const newTaskInput = document.getElementById('new-task');
@@ -21,9 +23,15 @@ document.addEventListener('DOMContentLoaded', function () {
         return;
     }
 
-    // Initialize tasks from localStorage
+    // Initialize and migrate tasks from localStorage
     let tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach((task, index) => {
+        if (!task.id) {
+            task.id = `task-${Date.now()}-${index}`;
+        }
+    });
     localStorage.setItem('tasks', JSON.stringify(tasks));
+
 
     // Tag color management
     function getTagColor(tag) {
@@ -56,13 +64,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (clearTasksButton) {
         clearTasksButton.addEventListener('click', function () {
-            tasks = loadTasksFromLocalStorage();
-            tasks = tasks.filter(task => !task.completed); // Keep only incomplete
+            tasks = tasks.filter(task => !task.completed);
             saveTasksToLocalStorage(tasks);
             renderTasks();
             updateTaskCounters();
-            sortTasks();
-            updateExistingTagsDropdown();
         });
     }
 
@@ -79,7 +84,10 @@ document.addEventListener('DOMContentLoaded', function () {
     function createTaskElement(taskObj, index) {
         const taskItem = document.createElement('li');
         taskItem.className = 'task-item';
+        taskItem.id='task-item-'+index;
         taskItem.dataset.index = index;
+
+        addTimerVisibilityToggle(taskItem, taskObj.text, taskObj.id);
 
         const label = document.createElement('label');
         label.className = 'custom-checkbox-wrapper';
@@ -100,6 +108,15 @@ document.addEventListener('DOMContentLoaded', function () {
         taskSpan.textContent = taskObj.text;
         if (taskObj.completed) taskSpan.classList.add('completed');
 
+        const durationSpan = document.createElement('span');
+        durationSpan.style.fontSize = '0.7rem';
+        durationSpan.style.color = 'var(--text-color)';
+        durationSpan.style.paddingRight = '7px';
+        durationSpan.className = 'task-duration';
+        const hours = Math.floor(taskObj.duration / 60);
+        const minutes = taskObj.duration % 60;
+        durationSpan.textContent = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+
         const tagContainer = document.createElement('div');
         tagContainer.className = 'tag-container';
         taskObj.tags.forEach(tag => {
@@ -115,6 +132,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         taskItem.appendChild(label);
         taskItem.appendChild(taskSpan);
+        taskItem.appendChild(durationSpan);
         taskItem.appendChild(tagContainer);
         taskItem.appendChild(deleteButton);
 
@@ -122,6 +140,21 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.addEventListener('change', function () {
             tasks = loadTasksFromLocalStorage();
             tasks[index].completed = this.checked;
+
+            const history = JSON.parse(localStorage.getItem('completedTasksHistory')) || [];
+
+            if (this.checked) {
+                tasks[index].completedAt = new Date().toISOString();
+                history.push(tasks[index]);
+            } else {
+                delete tasks[index].completedAt;
+                const taskIndexInHistory = history.findIndex(t => t.id === tasks[index].id);
+                if (taskIndexInHistory > -1) {
+                    history.splice(taskIndexInHistory, 1);
+                }
+            }
+            
+            localStorage.setItem('completedTasksHistory', JSON.stringify(history));
             saveTasksToLocalStorage(tasks);
             updateTaskCounters();
             renderTasks();
@@ -143,22 +176,24 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskText = newTaskInput.value.trim();
         const tagText = document.getElementById('tag-input').value.trim();
         const tags = tagText ? tagText.split(',').map(tag => tag.trim()).filter(tag => tag !== '') : [];
-    
+        
         if (taskText === '') {
-            alert('Please enter a task!');
+            alert('please enter a task!');
             return;
         }
     
         const taskObj = {
+            id: 'task-' + Date.now(),
             text: taskText,
             tags: tags,
+            duration: 0, // Initialize duration
             completed: false
         };
     
         let tasks = loadTasksFromLocalStorage();
         tasks.push(taskObj);
         saveTasksToLocalStorage(tasks);
-        saveTagsToLocalStorage(tags); // <-- merge new tags into allTags properly
+        saveTagsToLocalStorage(tags); 
     
         newTaskInput.value = '';
         document.getElementById('tag-input').value = '';
@@ -193,8 +228,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 const emptyState = document.createElement('div');
                 emptyState.className = 'empty-state';
                 emptyState.innerHTML = `
-                    <h3>No tasks yet</h3>
-                    <p>Add a task to get started!</p>
+                    <h3>no tasks yet</h3>
+                    <p>add a task to get started!</p>
                 `;
                 taskList.appendChild(emptyState);
             }
@@ -259,18 +294,17 @@ function updateExistingTagsDropdown() {
     if (newTaskInput) {
         newTaskInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                console.log('Enter key pressed in task input');
+                console.log('enter key pressed in task input');
                 addTask();
             }
         });
     }
 
-    // Add Enter key support for tag input
     const tagInput = document.getElementById('tag-input');
     if (tagInput) {
         tagInput.addEventListener('keypress', function (e) {
             if (e.key === 'Enter') {
-                console.log('Enter key pressed in tag input');
+                console.log('enter key pressed in tag input');
                 addTask();
             }
         });
@@ -293,6 +327,32 @@ function updateExistingTagsDropdown() {
             }
         });
     }
+
+    window.addEventListener('message', (event) => {
+        console.log('Received message:', event.data);
+        if (event.data.type === 'UPDATE_DURATION') {
+            const { duration } = event.data;
+            const activeTaskId = localStorage.getItem('activeTaskId');
+            console.log('Active Task ID from localStorage:', activeTaskId);
+
+            if (activeTaskId) {
+                const tasks = loadTasksFromLocalStorage();
+                const taskIndex = tasks.findIndex(t => t.id === activeTaskId);
+                console.log('Found task index:', taskIndex);
+
+                if (taskIndex !== -1) {
+                    console.log(`Updating task "${tasks[taskIndex].text}" from ${tasks[taskIndex].duration} to ${tasks[taskIndex].duration + duration}`);
+                    tasks[taskIndex].duration += duration;
+                    saveTasksToLocalStorage(tasks);
+                    renderTasks();
+                } else {
+                    console.error('Could not find task with ID:', activeTaskId);
+                }
+            } else {
+                 console.error('No active task ID found in localStorage.');
+            }
+        }
+    });
 
     // Initialize the app
     renderTasks();

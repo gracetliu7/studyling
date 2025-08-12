@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Madeonmactrackpad2-Regular';
-    src: url('../../Madeonmactrackpad2-Regular.ttf') format('truetype');
+    src: url('../../public/Madeonmactrackpad2-Regular.ttf') format('truetype');
     font-display: swap;
     font-weight: normal;
     font-style: normal;
@@ -16,17 +16,18 @@
 }
 
 #back-button {
-    background-color: transparent;
+    background-color: var(--input-bg);
     border: 1px var(--border-color) solid;
     cursor: pointer;
     padding: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
     margin-right: auto;
     justify-self: left;
     font-family: "Madeonmactrackpad-Regular";
     border-radius: 5px;
     color: var(--text-color);
-}
+  }
 .about-content h1{
     color: var(--text-color);
     font-size: 40px;
@@ -38,6 +39,12 @@
     font-size: 20px;
     color: var(--text-color);
     margin-left: 120px;
+    font-family: 'Madeonmactrackpad2-Regular', "Madeonmactrackpad-Regular";
+}
+.about-content h5{
+    font-size: 18px;
+    color: gray;
+    margin-left: 140px;
     font-family: 'Madeonmactrackpad2-Regular', "Madeonmactrackpad-Regular";
 }
 .about-content a{
@@ -64,5 +71,5 @@
 }
 
 .color-swatch:hover {
-    transform: scale(1.05);
+    transform: scale(1.07);
 }

@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('../../public/Madeonmactrackpad-Regular.ttf') format('truetype');
 }
 
 * {
@@ -11,35 +11,37 @@
 }
 
 body {
-  background: white;
+  background: var(--bg-color);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 25px;
-  padding-bottom: 20px;
+  padding: 20px;
   font-family: 'Madeonmactrackpad-Regular';
 }
 
 .container {
-  background-color: white;
+  background-color: var(--bg-color);
   border-radius: 12px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 500px;
   overflow: hidden;
 }
 
+#timer-container {
+  text-align: center;
+}
+
 header {
-  background: #e1e1e9;
-  color: black;
+  background: var(--header-bg);
+  color: var(--text-color);
   padding: 15px;
   text-align: center;
 }
 
-h1 {
-  font-size: 2.2rem;
-  margin-bottom: 5px;
+h2 {
+  align-self: center;
+  font-size: 20px;
 }
 
 .subtitle {
@@ -47,8 +49,17 @@ h1 {
   font-weight: 300;
 }
 
-.app-body {
-  padding: 25px;
+.top {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.top h2 {
+  flex: 1;
+  text-align: center;
 }
 
 .input-container {
@@ -56,9 +67,83 @@ h1 {
   margin-bottom: 25px;
 }
 
-.countdown-container {
+/*back arrow*/
+.back-arrow {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.back-arrow button {
+  transform: scale(-1, 1);
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  -ms-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  padding: 0px 7px;
+  font-size: 1.5rem;
+  border: 0.7px var(--border-color) solid;
+  border-radius: 3px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+
+}
+
+#timer-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 0.7px solid var(--border-color);
+  padding: 5px 20px;
+  background-color: transparent;
+  margin: 0px;
+  overflow: hidden;
+  justify-items: center;
+}
+
+/*countdown*/
+.countdown-container,
+.stopwatch-container {
   text-align: center;
-  margin-top: 30px;
+  border: 0.7px var(--border-color) solid;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  /* Firefox */
+}
+
+/* Custom arrow buttons styling */
+.arrow-btn {
+  background: var(--bg-color);
+  border: 0.7px var(--border-color) solid;
+  color: var(--text-color);
+  padding: 2px 6px;
+  margin: 0 2px;
+  cursor: pointer;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.arrow-btn:hover {
+  background: var(--header-bg);
+}
+
+.arrow-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 5px;
 }
 
 #countdown-message {
@@ -69,41 +154,67 @@ h1 {
 }
 
 .time-display {
-  font-size: 3em;
-  margin: 15px 0;
-  background: #f0f0f0;
-  padding: 10px 20px;
+  font-size: 40px;
+  background: var(--header-bg);
+  padding: 5px 20px;
   display: inline-block;
   border-radius: 10px;
   text-align: center;
 }
 
 input {
-  padding: 10px;
-  margin: 5px;
-  width: 100px;
-  font-size: 16px;
+  width: 70px;
+  font-size: 1.2rem;
   text-align: center;
 }
 
 .time-button {
-  margin: 10px;
+  margin: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
 }
 
-.time-button button {
-  padding: 10px 20px;
+.time-button button,
+.time-button input {
+  padding: 7px 10px;
   margin: 5px;
+  margin-bottom: 0px;
   font-size: 1rem;
+  border-radius: 5px;
+  border: 0.7px var(--border-color) solid;
   cursor: pointer;
+  background-color: var(--bg-color);
+  color: var(--text-color);
 }
-.stopwatch-container {
-  text-align: center;
-  margin: 15px auto;
-  display: block;
+
+/*stopwatch*/
+#final-time {
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
+
 .time-display {
   text-align: center;
-  margin: 30px auto;
+  margin: 10px auto;
   display: block;
   width: fit-content;
+}
+
+.choose-button button {
+  padding: 7px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 0.7px var(--border-color) solid;
+  margin: 5px;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+.choose-button{
+  padding-bottom: 20px;
+}
+
+.choose-button button:hover {
+  transform: scale(1.07);
 }

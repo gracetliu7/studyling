@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('../Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Madeonmactrackpad2-Regular';
-  src: url('../Madeonmactrackpad2-Regular.ttf') format('truetype');
+  src: url('Madeonmactrackpad2-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
@@ -45,11 +45,12 @@
 
 body {
   background: var(--bg-color);
-  min-height: 100px;
+  min-height: 100vh;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0px;
+  padding: 20px 0;
   margin: 0;
   font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   color: var(--text-color);
@@ -62,9 +63,12 @@ body {
   border: 0.7px solid var(--border-color);
   width: 100%;
   min-width: 500px;
-  overflow: hidden;
+  max-width: 600px;
   color: var(--text-color);
-  margin: 20px
+  margin: 0 20px;
+  align-items: center;
+  z-index: 1;
+  position: relative;
 }
 
 header {
@@ -79,6 +83,19 @@ header {
 h1 {
   font-size: 2.2rem;
   margin-bottom: 5px;
+}
+#back-button {
+  background-color: var(--input-bg);
+  border: 1px var(--border-color) solid;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: auto;
+  justify-self: left;
+  font-family: "Madeonmactrackpad-Regular";
+  border-radius: 5px;
+  color: var(--text-color);
 }
 
 .subtitle {
@@ -95,15 +112,17 @@ h1 {
   margin-bottom: 10px;
 }
 
-.tag-input-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 10px;
-}
 
 .footer{
   border-color: transparent;
-  margin-top: 15px
+  margin-top: 20px;
+  align-items: left;
+  align-content: left;
+  justify-content: left;
+  align-self: flex-start;
+  text-align: left;
+  margin-left: 20px;
+
 }
 
 #new-task {
@@ -163,7 +182,6 @@ h1 {
 
 .task-item:hover {
   transform: translateY(-2px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
 }
 
 .custom-checkbox-wrapper {
@@ -251,83 +269,6 @@ h1 {
   background-image: var(--tag-img);
 }
 
-#tag-input {
-  padding: 5px 20px;
-  width: 50%;
-  border-radius: 3px;
-  border: 0.7px var(--border-color) solid;
-  background-color: var(--input-bg);
-  color: var(--text-color);
-}
-
-.custom-dropdown {
-  position: relative;
-  display: inline-block;
-  margin-left: 10px;
-}
-
-.dropdown-button {
-  padding: 5px 20px;
-  width: 100%;
-  border-radius: 3px;
-  border: 0.7px var(--border-color) solid;
-  background-color: var(--input-bg);
-  color: var(--text-color);
-  cursor: pointer;
-  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  outline: none;
-  font-size: 1em;
-  text-align: left;
-  min-width: 200px;
-}
-
-.dropdown-button:hover {
-  background-color: var(--task-item-bg);
-}
-
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: var(--input-bg);
-  min-width: 200px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  border-radius: 3px;
-  border: 0.7px var(--border-color) solid;
-  max-height: 200px;
-  z-index: 999;
-  overflow-y: auto;
-}
-
-.dropdown-content.show {
-  display: block;
-}
-
-.dropdown-placeholder {
-  padding: 10px 15px;
-  color: var(--text-color);
-  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-size: 1rem;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.dropdown-option {
-  padding: 10px 15px;
-  color: var(--text-color);
-  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-size: 1rem;
-  cursor: pointer;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.dropdown-option:hover {
-  background-color: var(--header-bg);
-}
-
-.dropdown-option:last-child {
-  border-bottom: none;
-}
-
 .settings-btn {
   background-image: var(--settings-img);
 }
@@ -343,12 +284,27 @@ h1 {
 iframe {
   border: none;
   margin: 0px;
-  padding: 20px;
-  padding-bottom: 0px;
+  padding: 0px;
   overflow: visible;
 }
 
-.clock-display{
+#clock-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 0px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+#clock-display,
+#timer-display {
+  border: none;
+  overflow: visible;
+  flex-shrink: 0;
+}
+
+.clock-display, .timer-display{
   width: 100%;
   height: 100%;
   padding: 0px;
@@ -403,6 +359,11 @@ iframe {
 
 .tag-entry input[type="text"] {
   margin-right: 10px;
+}
+#ko-fi-container {
+  align-self: flex-end;
+  text-align: right;
+  margin-right: 20px;
 }
 
 .empty-state {

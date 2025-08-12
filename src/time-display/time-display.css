@@ -1,22 +1,59 @@
-#clock-container {
-    display: flex;
-    flex-direction: column;
-    border-radius: 12px;
-    border: 0.7px solid var(--time-display);
-    padding: 5px 12px;
-    background-color: transparent;
-    margin: 0px;
-    overflow: hidden;
-    justify-items: center;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Madeonmactrackpad-Regular';
+}
 
-  }
-  #clock {
-        font-size: 40px;
-        padding: 10px;
-        color: var(--time-display);
-  }
-  #date {
-    font-size: 20px;
-    padding: 0px 20px;
-    color: var(--time-display);
-  }
+body {
+  background: var(--bg-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  font-family: 'Madeonmactrackpad-Regular';
+}
+
+.container{
+  background-color: var(--bg-color);
+  border-radius: 12px;
+  width: 100%;
+  max-width: 500px;
+  overflow: hidden;
+}
+
+#clock-container {
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  border: 0.7px solid var(--border-color);
+  padding: 5px 12px;
+  background-color: transparent;
+  margin: 0px;
+  overflow: hidden;
+  justify-items: center;
+}
+
+#clock {
+  margin: 5px;
+  font-size: 40px;
+  padding: 5px;
+  text-align: center;
+}
+
+#date {
+  margin: 10px;
+  font-size: 20px;
+  padding: 0px 20px;
+  color: var(--time-display);
+}
+
+#message {
+  text-align: center;
+  padding: 8px;
+}
+#message p {
+padding: 2px;
+
+}

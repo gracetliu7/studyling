@@ -6,17 +6,23 @@
   <title>Stopwatch</title>
   <link rel="stylesheet" href="timers.css">
   <script src="stopwatch.js" defer></script>
+  <script src="/src/theme.js" defer></script>
 </head>
 <body>
     <div class="stopwatch-container">
+      <div class="top">
+      <div class="back-arrow">
+        <button id="back-arrow-btn" onclick="history.back()"> ← </button>
+      </div>
         <h2>Stopwatch</h2>
+        </div>
   <div class="time-display" id="display">00:00:00</div>
   <div>
     <div class="time-button">
     <button onclick="startStopwatch()">Start</button>
     <button onclick="pauseStopwatch()">Pause</button>
     <button onclick="stopStopwatch()">Stop</button>
-    <p id="finalTime"></p>
+    <p id="final-time"></p>
     </div>
     </div>
   </div>

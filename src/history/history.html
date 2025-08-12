@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>History</title>
+    <link rel="stylesheet" href="history.css" />
+    <script src="../theme.js" defer></script>
+    <script src="history.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <button id="back-button" onclick="history.back()"> back </button>
+            <h1>Completed Tasks History</h1>
+        </header>
+        <div class="tabs-container">
+            <div id="tabs" class="tabs"></div>
+            <hr>
+        </div>
+        <main>
+            <ul id="history-list"></ul>
+        </main>
+    </div>
+</body>
+</html>

@@ -28,7 +28,8 @@
     border: 1px var(--border-color) solid;
     cursor: pointer;
     padding: 10px;
-    margin-left: 10px;
+    margin-left: 20px;
+    margin-top: 20px;
     margin-right: auto;
     justify-self: left;
     font-family: "Madeonmactrackpad-Regular";
@@ -36,7 +37,7 @@
     color: var(--text-color);
 }
 
-#light-mode, #dark-mode {
+#light-mode, #dark-mode, #original-theme {
     margin-left: 20px;
     height: 60px;
     width: 60px;
@@ -48,6 +49,19 @@
     border-radius: 5px;
     margin: 5px;
     transition: transform 0.2s ease;
+    
+}
+#original-theme{
+    font-size: 2.5rem;
+    font-family: 'Madeonmactrackpad-Regular';
+    border: 1px var(--border-color) solid;
+    background-color: var(--bg-color);
+    margin-left: 140px;
+    color: var(--text-color);
+}
+
+.original p{
+    margin-left: 145px;
 }
 
 .mode{
@@ -60,15 +74,15 @@
 }
 
 #light-mode {
-    background-image: url('../Icons/light-mode.jpg');
+    background-image: url('../../public/Icons/light-mode.jpg');
     border: 1px var(--border-color) solid;
 }
 
 #dark-mode {
-    background-image: url('../Icons/dark-mode.jpg');
+    background-image: url('../../public/Icons/dark-mode.jpg');
     border: 1px var(--border-color) solid;
 }
 
-#light-mode:hover, #dark-mode:hover {
+#light-mode:hover, #dark-mode:hover, #original-theme:hover {
     transform: scale(1.05);
 }
