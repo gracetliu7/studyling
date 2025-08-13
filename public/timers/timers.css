@@ -1,6 +1,6 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('../../public/Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('../Madeonmactrackpad-Regular.ttf') format('truetype');
 }
 
 * {

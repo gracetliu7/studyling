@@ -1,4 +1,4 @@
-import { addTimerVisibilityToggle } from '../timers/timer-visibility.js';
+import { addTimerVisibilityToggle } from './timer-visibility.js';
 
 document.addEventListener('DOMContentLoaded', function () {
     // DOM Elements

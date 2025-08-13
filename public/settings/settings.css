@@ -74,12 +74,12 @@
 }
 
 #light-mode {
-    background-image: url('../../public/Icons/light-mode.jpg');
+    background-image: url('../Icons/light-mode.jpg');
     border: 1px var(--border-color) solid;
 }
 
 #dark-mode {
-    background-image: url('../../public/Icons/dark-mode.jpg');
+    background-image: url('../Icons/dark-mode.jpg');
     border: 1px var(--border-color) solid;
 }
 
