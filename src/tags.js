@@ -23,7 +23,7 @@ function renderTags() {
   const allTags = JSON.parse(localStorage.getItem('allTags')) || [];
 
   if (allTags.length === 0) {
-    container.innerHTML = '<p>No tags found.</p>';
+    container.innerHTML = '<p>no tags found</p>';
     return;
   }
 
@@ -38,7 +38,7 @@ function renderTags() {
     deleteIcon.textContent= 'X';
 
     deleteIcon.addEventListener('click', () => {
-      if (!confirm(`Are you sure you want to delete "${oldTag}"? This can't be undone`)) return;
+      if (!confirm(`are you sure you want to delete "${oldTag}"? this can't be undone`)) return;
 
       const updatedTasks = tasks.map(task => ({
         ...task,
