@@ -1,3 +1,21 @@
+import addIconDark from '/Icons/add-button-dark.png';
+import calendarIconDark from '/Icons/calendar-dark.png';
+import checkedIconDark from '/Icons/checked-box-dark.png';
+import uncheckedIconDark from '/Icons/unchecked-box-dark.png';
+import deleteIconDark from '/Icons/delete-dark.png';
+import settingsIconDark from '/Icons/settings-button-dark.png';
+import tagIconDark from '/Icons/tag-button-dark.png';
+import timeDisplayIconDark from '/Icons/time-display-dark.png';
+
+import addIconLight from '/Icons/add-button.png';
+import calendarIconLight from '/Icons/calendar.png';
+import checkedIconLight from '/Icons/checked-box.png';
+import uncheckedIconLight from '/Icons/unchecked-box.png';
+import deleteIconLight from '/Icons/delete.png';
+import settingsIconLight from '/Icons/settings-button.png';
+import tagIconLight from '/Icons/tag-button.png';
+import timeDisplayIconLight from '/Icons/time-display.png';
+
 function applyTheme(theme) {
     const root = document.documentElement;
 
@@ -13,15 +31,14 @@ function applyTheme(theme) {
         root.style.setProperty('--time-display', 'white');
 
         //replace icons
-
-        root.style.setProperty('--add-img', 'url("/Icons/add-button-dark.png")');
-        root.style.setProperty('--calendar-img', 'url("/Icons/calendar-dark.png")');
-        root.style.setProperty('--checked-img', 'url("/Icons/checked-box-dark.png")');
-        root.style.setProperty('--unchecked-img', 'url("/Icons/unchecked-box-dark.png")');
-        root.style.setProperty('--delete-img', 'url("/Icons/delete-dark.png")');
-        root.style.setProperty('--settings-img', 'url("/Icons/settings-button-dark.png")');
-        root.style.setProperty('--tag-img', 'url("/Icons/tag-button-dark.png")');
-        root.style.setProperty('--time-display-img', 'url("/Icons/time-display-dark.png")');
+        root.style.setProperty('--add-img', `url("${addIconDark}")`);
+        root.style.setProperty('--calendar-img', `url("${calendarIconDark}")`);
+        root.style.setProperty('--checked-img', `url("${checkedIconDark}")`);
+        root.style.setProperty('--unchecked-img', `url("${uncheckedIconDark}")`);
+        root.style.setProperty('--delete-img', `url("${deleteIconDark}")`);
+        root.style.setProperty('--settings-img', `url("${settingsIconDark}")`);
+        root.style.setProperty('--tag-img', `url("${tagIconDark}")`);
+        root.style.setProperty('--time-display-img', `url("${timeDisplayIconDark}")`);
 
 
         document.body.style.backgroundColor = '#1a1a1a';
@@ -39,14 +56,14 @@ function applyTheme(theme) {
         root.style.setProperty('--time-display', 'black');
 
         //replace icons
-        root.style.setProperty('--add-img', 'url("/Icons/add-button.png")');
-        root.style.setProperty('--calendar-img', 'url("/Icons/calendar.png")');
-        root.style.setProperty('--checked-img', 'url("/Icons/checked-box.png")');
-        root.style.setProperty('--unchecked-img', 'url("/Icons/unchecked-box.png")');
-        root.style.setProperty('--delete-img', 'url("/Icons/delete.png")');
-        root.style.setProperty('--settings-img', 'url("/Icons/settings-button.png")');
-        root.style.setProperty('--tag-img', 'url("/Icons/tag-button.png")');
-        root.style.setProperty('--time-display-img', 'url("/Icons/time-display.png")');
+        root.style.setProperty('--add-img', `url("${addIconLight}")`);
+        root.style.setProperty('--calendar-img', `url("${calendarIconLight}")`);
+        root.style.setProperty('--checked-img', `url("${checkedIconLight}")`);
+        root.style.setProperty('--unchecked-img', `url("${uncheckedIconLight}")`);
+        root.style.setProperty('--delete-img', `url("${deleteIconLight}")`);
+        root.style.setProperty('--settings-img', `url("${settingsIconLight}")`);
+        root.style.setProperty('--tag-img', `url("${tagIconLight}")`);
+        root.style.setProperty('--time-display-img', `url("${timeDisplayIconLight}")`);
 
         document.body.style.backgroundColor = '#ffffff';
         document.body.style.color = '#000000';
