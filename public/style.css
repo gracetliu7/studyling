@@ -1,13 +1,13 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('/Madeonmactrackpad-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Madeonmactrackpad2-Regular';
-  src: url('Madeonmactrackpad2-Regular.ttf') format('truetype');
+  src: url('/Madeonmactrackpad2-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
@@ -25,15 +25,34 @@
   --time-display: #ffffff;
 
   /* icons */
-  --add-img: url("Icons/add-button.png");
-  --calendar-img: url("Icons/calendar.png");
-  --checked-img: url("Icons/checked-box.png");
-  --delete-img: url("Icons/delete.png");
-  --unchecked-img: url("Icons/unchecked-box.png");
-  --settings-img: url("Icons/settings-button.png");
-  --tag-img: url("Icons/tag-button.png");
-  --time-display-img: url("Icons/time-display.png");
+  --add-img: url("./Icons/add-button.png");
+  --calendar-img: url("./Icons/calendar.png");
+  --checked-img: url("./Icons/checked-box.png");
+  --delete-img: url("./Icons/delete.png");
+  --unchecked-img: url("./Icons/unchecked-box.png");
+  --settings-img: url("./Icons/settings-button.png");
+  --tag-img: url("./Icons/tag-button.png");
+  --time-display-img: url("./Icons/time-display.png");
+}
 
+html[data-theme="dark"] {
+  --bg-color: #1a1a1a;
+  --text-color: #ffffff;
+  --container-bg: #2d2d2d;
+  --header-bg: #3d3d3d;
+  --task-item-bg: #3d3d3d;
+  --border-color: #ffffff;
+  --input-bg: '#3d3d3d';
+  --time-display: 'white';
+
+  --add-img: url("./Icons/add-button-dark.png");
+  --calendar-img: url("./Icons/calendar-dark.png");
+  --checked-img: url("./Icons/checked-box-dark.png");
+  --unchecked-img: url("./Icons/unchecked-box-dark.png");
+  --delete-img: url("./Icons/delete-dark.png");
+  --settings-img: url("./Icons/settings-button-dark.png");
+  --tag-img: url("./Icons/tag-button-dark.png");
+  --time-display-img: url("./Icons/time-display-dark.png");
 }
 
 * {
