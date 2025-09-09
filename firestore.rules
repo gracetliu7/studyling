@@ -1,0 +1,20 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Allow anyone to sign up for the mailing list, but not read or delete existing emails.
+    match /mailing-list/{email} {
+      allow read, update, delete: if false;
+      allow create: if true;
+    }
+
+    // Allow anyone to read the access codes for the ranking.
+    // Allow users to update the usedCount, but not other fields.
+    match /access-codes/{code} {
+      allow read: if true;
+      allow create, delete: if false;
+      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['usedCount']);
+    }
+  }
+}

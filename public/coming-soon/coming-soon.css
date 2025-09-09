@@ -1,0 +1,158 @@
+.coming-soon {
+    padding: 0px;
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', 'Madeonmactrackpadicons-Regular',sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 100vh;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    max-width: 750px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.rankings-container {
+    justify-content: flex-start;
+    scroll-behavior: smooth;
+    overflow-y: scroll;
+}
+
+h3 {
+    font-size: 5rem;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+h1, h2{
+    margin-top: 10px;
+}
+h1 {
+    margin-bottom: 0px;
+
+}
+a {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+h4{
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 1.2rem;
+}
+
+#email-signup-form, #code-access{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#code-access {
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+#email-signup-form label, #code-access label{
+    font-size: 1.5rem;
+    margin-left: auto;
+
+}
+
+#email-input, #code-input {
+    font-size: 1.2rem;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid black;
+    width: 100%;
+    box-sizing: border-box; 
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular';
+    background-color: var(--input-bg);
+    color: var(--text-color);
+}
+
+#submit-button, #code-submit-button {
+    font-size: 1.4rem;
+    padding: 5px 14px;
+    border: 1px solid black;
+    border-radius: 5px;
+    font-family: 'Madeonmactrackpad-Regular', sans-serif;
+    cursor: pointer;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+#submit-button:hover, #code-submit-button:hover {
+    transform: scale(1.05);
+}
+
+#start-countdown {
+    border: 1px solid black;
+    border-radius: 8px;
+    padding: 10px 20px;
+    font-size: 2.5rem;
+    max-width: 270px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#rankings-table {
+    width: 100%;
+    max-width: 500px;
+    margin: 20px auto;
+    border-collapse: collapse;
+    font-size: 1.2rem;
+}
+
+#rankings-table th, #rankings-table td {
+    padding: 10px;
+    text-align: center;
+}
+
+#rankings-table th {
+    background-color: var(--container-bg);
+    font-size: 1.4rem;
+    border-radius: 5px;
+    border-bottom: 1px solid black;
+}
+
+#rankings-table tbody tr:hover {
+    background-color: var(--hover-color);
+}
+
+a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin-top: 20px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#back-button {
+    background-color: var(--input-bg);
+  border: 1px black solid;
+  cursor: pointer;
+  padding: 10px;
+  margin-left: 20px;
+  margin-top: 20px;
+  margin-right: auto;
+  justify-self: left;
+  font-family: "Madeonmactrackpad-Regular";
+  border-radius: 5px;
+  color: var(--text-color);
+  text-decoration: none;
+}
+#back-button:hover {
+    transform: scale(1.05);
+}
