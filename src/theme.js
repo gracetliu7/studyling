@@ -1,20 +1,24 @@
-import addIconDark from '/Icons/add-button-dark.png';
-import calendarIconDark from '/Icons/calendar-dark.png';
-import checkedIconDark from '/Icons/checked-box-dark.png';
-import uncheckedIconDark from '/Icons/unchecked-box-dark.png';
-import deleteIconDark from '/Icons/delete-dark.png';
-import settingsIconDark from '/Icons/settings-button-dark.png';
-import tagIconDark from '/Icons/tag-button-dark.png';
-import timeDisplayIconDark from '/Icons/time-display-dark.png';
+// Detect if current path includes '/public' (local dev from repo root)
+const BASE_PREFIX = window.location.pathname.includes('/public/') ? '/public' : '';
 
-import addIconLight from '/Icons/add-button.png';
-import calendarIconLight from '/Icons/calendar.png';
-import checkedIconLight from '/Icons/checked-box.png';
-import uncheckedIconLight from '/Icons/unchecked-box.png';
-import deleteIconLight from '/Icons/delete.png';
-import settingsIconLight from '/Icons/settings-button.png';
-import tagIconLight from '/Icons/tag-button.png';
-import timeDisplayIconLight from '/Icons/time-display.png';
+// Icon paths (absolute from site root, with optional '/public' during local dev)
+const addIconDark = `${BASE_PREFIX}/Icons/add-button-dark.png`;
+const calendarIconDark = `${BASE_PREFIX}/Icons/calendar-dark.png`;
+const checkedIconDark = `${BASE_PREFIX}/Icons/checked-box-dark.png`;
+const uncheckedIconDark = `${BASE_PREFIX}/Icons/unchecked-box-dark.png`;
+const deleteIconDark = `${BASE_PREFIX}/Icons/delete-dark.png`;
+const settingsIconDark = `${BASE_PREFIX}/Icons/settings-button-dark.png`;
+const tagIconDark = `${BASE_PREFIX}/Icons/tag-button-dark.png`;
+const timeDisplayIconDark = `${BASE_PREFIX}/Icons/time-display-dark.png`;
+
+const addIconLight = `${BASE_PREFIX}/Icons/add-button.png`;
+const calendarIconLight = `${BASE_PREFIX}/Icons/calendar.png`;
+const checkedIconLight = `${BASE_PREFIX}/Icons/checked-box.png`;
+const uncheckedIconLight = `${BASE_PREFIX}/Icons/unchecked-box.png`;
+const deleteIconLight = `${BASE_PREFIX}/Icons/delete.png`;
+const settingsIconLight = `${BASE_PREFIX}/Icons/settings-button.png`;
+const tagIconLight = `${BASE_PREFIX}/Icons/tag-button.png`;
+const timeDisplayIconLight = `${BASE_PREFIX}/Icons/time-display.png`;
 
 function applyTheme(theme) {
     const root = document.documentElement;
@@ -28,7 +32,7 @@ function applyTheme(theme) {
         root.style.setProperty('--task-item-bg', '#3d3d3d');
         root.style.setProperty('--border-color', '#ffffff');
         root.style.setProperty('--input-bg', '#3d3d3d');
-        root.style.setProperty('--time-display', 'white');
+        root.style.setProperty('--time-display', '#ffffff');
 
         //replace icons
         root.style.setProperty('--add-img', `url("${addIconDark}")`);
