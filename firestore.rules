@@ -10,11 +10,23 @@ service cloud.firestore {
     }
 
     // Allow anyone to read the access codes for the ranking.
-    // Allow users to update the usedCount, but not other fields.
+    // Allow only increasing usedCount; no other fields may change.
+    // Permit one-time conversion from string -> int for legacy docs.
     match /access-codes/{code} {
       allow read: if true;
       allow create, delete: if false;
-      allow update: if request.resource.data.diff(resource.data).affectedKeys().hasOnly(['usedCount']);
+      allow update: if
+        request.resource.data.diff(resource.data).changedKeys().hasOnly(["usedCount"]) && (
+          // If both are integers, enforce non-decreasing
+          (resource.data.usedCount is int && request.resource.data.usedCount is int &&
+           request.resource.data.usedCount >= resource.data.usedCount) ||
+          // If legacy value was a string, allow converting to an integer (any non-negative)
+          (resource.data.usedCount is string && request.resource.data.usedCount is int &&
+           request.resource.data.usedCount >= 0) ||
+          // If field didn't exist, allow initializing to a positive integer
+          (resource.data.usedCount == null && request.resource.data.usedCount is int &&
+           request.resource.data.usedCount >= 1)
+        );
     }
   }
 }

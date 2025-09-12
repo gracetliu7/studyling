@@ -1,5 +1,6 @@
+    // Import Firebase
     import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, updateDoc, doc, increment } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+    import { getFirestore, collection, addDoc, serverTimestamp, query, where, getDocs, doc, runTransaction } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
   
     const firebaseConfig = {
       apiKey: "AIzaSyAd1UJrE9LFvNOI6jp9am1eyHQLDL5Ll8Q",
@@ -10,9 +11,11 @@
       appId: "1:426130916056:web:76862156edde2100adcdad"
     };
   
+    // Init Firebase
     const app = initializeApp(firebaseConfig);
     const db = getFirestore(app);
   
+    // Handle form submit
     document.getElementById("email-signup-form").addEventListener("submit", async (e) => {
       e.preventDefault();
   
@@ -29,41 +32,47 @@
           email,
           timestamp: serverTimestamp()
         });
-        emailInput.value = ""; 
+        alert("thanks for signing up!");
+        emailInput.value = ""; // clear form
       } catch (error) {
         console.error("error saving email:", error);
         alert("something went wrong, try again");
       }
     });
 
-document.getElementById("code-access").addEventListener("submit", async (e) => {
-    e.preventDefault();
+  document.getElementById("code-access").addEventListener("submit", async (e) => {
+      e.preventDefault();
 
-    const codeInput = document.getElementById("code-input");
-    const code = codeInput.value.trim();
+      const codeInput = document.getElementById("code-input");
+      const code = codeInput.value.trim();
 
-    if (!code) {
-        alert("please enter a code");
-        return;
-    }
+      if (!code) {
+          alert("please enter a code");
+          return;
+      }
 
-    try {
-        const codesRef = collection(db, "access-codes");
-        const q = query(codesRef, where("code", "==", code));
-        const querySnapshot = await getDocs(q);
+      try {
+          const codesRef = collection(db, "access-codes");
+          const q = query(codesRef, where("code", "==", code));
+          const querySnapshot = await getDocs(q);
 
-        if (!querySnapshot.empty) {
-            const codeDoc = querySnapshot.docs[0];
-            const codeDocRef = doc(db, "access-codes", codeDoc.id);
-            await updateDoc(codeDocRef, {
-                usedCount: increment(1)
-            });
-            window.location.href = '../todo-list/todo-list.html';
-        } else {
-            alert("not a valid code");
-        }
-    } catch (error) {
-        console.error("error validating code: ", error);
-        alert("something went wrong, please try again");
-    }
-});
+          if (querySnapshot.empty) {
+              alert("incorrect code");
+              return;
+          }
+
+          const codeDoc = querySnapshot.docs[0];
+          const codeDocRef = doc(db, "access-codes", codeDoc.id);
+
+          await runTransaction(db, async (tx) => {
+              const snap = await tx.get(codeDocRef);
+              const current = Number(snap.get("usedCount")) || 0;
+              tx.update(codeDocRef, { usedCount: current + 1 });
+          });
+
+          window.location.href = "../todo-list/todo-list.html";
+      } catch (error) {
+          console.error("error validating code: ", error);
+          alert("something went wrong, please try again");
+      }
+  });

@@ -1,15 +1,4 @@
 {
-  "indexes": [
-    {
-      "collectionGroup": "access-codes",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "usedCount",
-          "order": "DESCENDING"
-        }
-      ]
-    }
-  ],
+  "indexes": [],
   "fieldOverrides": []
 }
