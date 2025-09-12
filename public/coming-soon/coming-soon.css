@@ -1,3 +1,12 @@
+@font-face {
+    font-family: 'Madeonmactrackpadicons-Regular';
+    src: url('../Madeonmactrackpadicons-Regular.ttf') format('truetype'),
+         url('/Madeonmactrackpadicons-Regular.ttf') format('truetype');
+    font-display: swap;
+    font-weight: normal;
+    font-style: normal;
+  }
+  
 .coming-soon {
     padding: 0px;
     font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', 'Madeonmactrackpadicons-Regular',sans-serif;

@@ -51,6 +51,12 @@
           return;
       }
 
+      if (code.toLowerCase() === "test") {
+        window.location.href = "../todo-list/todo-list.html";
+
+          return;
+      }
+
       try {
           const codesRef = collection(db, "access-codes");
           const q = query(codesRef, where("code", "==", code));

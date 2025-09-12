@@ -12,6 +12,13 @@
   font-weight: normal;
   font-style: normal;
 }
+@font-face {
+  font-family: 'Madeonmactrackpadicons-Regular';
+  src: url('/Madeonmactrackpadicons-Regular.ttf') format('truetype');
+  font-display: swap;
+  font-weight: normal;
+  font-style: normal;
+}
 
 :root {
   /* colors for text and background */
