@@ -105,8 +105,8 @@ h4{
     border: 1px solid black;
     border-radius: 8px;
     padding: 10px 20px;
-    font-size: 2.5rem;
-    max-width: 270px;
+    font-size: 2rem;
+    min-width: 200px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
@@ -149,7 +149,7 @@ a:hover {
 }
 
 #back-button {
-    background-color: var(--input-bg);
+  background-color: var(--input-bg);
   border: 1px black solid;
   cursor: pointer;
   padding: 10px;
