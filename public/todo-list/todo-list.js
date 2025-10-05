@@ -99,6 +99,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const customSpan = document.createElement('span');
         customSpan.className = 'custom-checkbox';
+        customSpan.textContent = "□";
+
 
         label.appendChild(checkbox);
         label.appendChild(customSpan);
@@ -129,6 +131,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         const deleteButton = document.createElement('button');
         deleteButton.className = 'delete-btn';
+        deleteButton.textContent = '✕';
 
         taskItem.appendChild(label);
         taskItem.appendChild(taskSpan);
@@ -146,7 +149,11 @@ document.addEventListener('DOMContentLoaded', function () {
             if (this.checked) {
                 tasks[index].completedAt = new Date().toISOString();
                 history.push(tasks[index]);
+                customSpan.textContent = "☑";
+                taskSpan.style.textDecoration = "line-through";
             } else {
+                customSpan.textContent = "□";
+                taskSpan.style.textDecoration = "none";
                 delete tasks[index].completedAt;
                 const taskIndexInHistory = history.findIndex(t => t.id === tasks[index].id);
                 if (taskIndexInHistory > -1) {
@@ -157,11 +164,15 @@ document.addEventListener('DOMContentLoaded', function () {
             localStorage.setItem('completedTasksHistory', JSON.stringify(history));
             saveTasksToLocalStorage(tasks);
             updateTaskCounters();
-            renderTasks();
             sortTasks();
         });
 
-        deleteButton.addEventListener('click', function () {
+        deleteButton.addEventListener('click', function (e) {
+            const activeTaskId = localStorage.getItem('activeTaskId');
+            if (activeTaskId === tasks[index].id) {
+                localStorage.removeItem('activeTaskId');
+            }
+            e.stopPropagation();
             tasks = loadTasksFromLocalStorage();
             tasks.splice(index, 1);
             saveTasksToLocalStorage(tasks);
@@ -310,7 +321,6 @@ function updateExistingTagsDropdown() {
         });
     }
 
-    // Custom dropdown functionality
     const dropdownButton = document.getElementById('exist-tag-button');
     const dropdownContent = document.getElementById('exist-tag-dropdown');
 
@@ -320,7 +330,6 @@ function updateExistingTagsDropdown() {
             dropdownContent.classList.toggle('show');
         });
 
-        // Close dropdown when clicking outside
         document.addEventListener('click', function (e) {
             if (!dropdownButton.contains(e.target) && !dropdownContent.contains(e.target)) {
                 dropdownContent.classList.remove('show');

@@ -33,6 +33,9 @@ function applyTheme(theme) {
         root.style.setProperty('--border-color', '#ffffff');
         root.style.setProperty('--input-bg', '#3d3d3d');
         root.style.setProperty('--time-display', '#ffffff');
+        root.style.setProperty('--icon-color', '#ffffff');
+        root.style.setProperty('--icon-bg', '#1a1a1a');
+
 
         //replace icons
         root.style.setProperty('--add-img', `url("${addIconDark}")`);
@@ -58,6 +61,8 @@ function applyTheme(theme) {
         root.style.setProperty('--border-color', '#000000');
         root.style.setProperty('--input-bg', '#ffffff');
         root.style.setProperty('--time-display', 'black');
+        root.style.setProperty('--icon-color', '#000000');
+        root.style.setProperty('--icon-bg', '#ffffff');
 
         //replace icons
         root.style.setProperty('--add-img', `url("${addIconLight}")`);

@@ -1,22 +1,22 @@
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
-  src: url('/Madeonmactrackpad-Regular.ttf') format('truetype');
+  src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Madeonmactrackpad2-Regular';
-  src: url('/Madeonmactrackpad2-Regular.ttf') format('truetype');
+  src: url('Madeonmactrackpad2-Regular.ttf') format('truetype');
   font-display: swap;
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'Madeonmactrackpadicons-Regular';
-  src: url('/Madeonmactrackpadicons-Regular.ttf') format('truetype');
+  src: url('Madeonmactrackpadicons-Regular.ttf') format('truetype');
   font-display: swap;
-  font-weight: normal;
+  font-weight: lighter;
   font-style: normal;
 }
 
@@ -30,16 +30,14 @@
   --border-color: #000000;
   --input-bg: #ffffff;
   --time-display: #ffffff;
+  --icon-color: #000000;
+  --icon-bg: #ffffff;
 
   /* icons */
   --add-img: url("./Icons/add-button.png");
-  --calendar-img: url("./Icons/calendar.png");
   --checked-img: url("./Icons/checked-box.png");
   --delete-img: url("./Icons/delete.png");
   --unchecked-img: url("./Icons/unchecked-box.png");
-  --settings-img: url("./Icons/settings-button.png");
-  --tag-img: url("./Icons/tag-button.png");
-  --time-display-img: url("./Icons/time-display.png");
 }
 
 html[data-theme="dark"] {
@@ -53,20 +51,16 @@ html[data-theme="dark"] {
   --time-display: 'white';
 
   --add-img: url("./Icons/add-button-dark.png");
-  --calendar-img: url("./Icons/calendar-dark.png");
   --checked-img: url("./Icons/checked-box-dark.png");
   --unchecked-img: url("./Icons/unchecked-box-dark.png");
   --delete-img: url("./Icons/delete-dark.png");
-  --settings-img: url("./Icons/settings-button-dark.png");
-  --tag-img: url("./Icons/tag-button-dark.png");
-  --time-display-img: url("./Icons/time-display-dark.png");
 }
 
 * {
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
-  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular','Madeonmactrackpadicons-Regular', BlinkMacSystemFont;
 }
 
 body {
@@ -78,7 +72,7 @@ body {
   align-items: center;
   padding: 20px 0;
   margin: 0;
-  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpad2-Regular', 'Madeonmactrackpadicons-Regular', BlinkMacSystemFont;
   color: var(--text-color);
 }
 
@@ -168,22 +162,20 @@ h1 {
 }
 
 #add-task {
-  background-image: var(--add-img);
   border: none;
-  width: 30px;
-  height: 30px;
-  background-size: 30px 30px;
-  padding: 25px;
-  background-repeat: no-repeat;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  font-size: 25px;
   transition: background 0.3s;
   background-position: center;
   cursor: pointer;
   background-color: transparent;
+  color: var(--icon-color)
 }
 
 #add-task:hover {
   background-color: transparent;
-  background-image: var(--add-img);
   background-size: 27px 27px;
   background-position: center;
   background-repeat: no-repeat;
@@ -195,14 +187,15 @@ h1 {
 }
 
 .task-item {
-  background: var(--task-item-bg);
+  background: var(--bg-color);
   border-radius: 8px;
-  padding: 15px;
+  padding: 12px;
   margin-bottom: 12px;
   display: flex;
   align-items: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
   color: var(--text-color);
+  border: 0.4px var(--border-color) solid;
 }
 
 .task-item:hover {
@@ -227,14 +220,11 @@ h1 {
   display: inline-block;
   width: 24px;
   height: 24px;
-  background-image: var(--unchecked-img);
-  background-size: cover;
   margin-right: 12px;
+  padding-bottom: 20px;
+  font-size: 20px;
+  color: var(--icon-color);
   transition: background-image 0.2s ease;
-}
-
-.custom-checkbox-wrapper input[type="checkbox"]:checked+.custom-checkbox {
-  background-image: var(--checked-img);
 }
 
 .task-text {
@@ -256,7 +246,6 @@ h1 {
   cursor: pointer;
   border: none;
   background-color: transparent;
-  font-size: 0;
   line-height: 0;
   background-size: 30px 30px;
   outline: none;
@@ -268,7 +257,6 @@ h1 {
   width: 20px;
   height: 20px;
   border: none;
-  background-image: var(--delete-img);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -276,6 +264,7 @@ h1 {
   cursor: pointer;
   opacity: 0;
   transition: all 0.3s ease;
+  color: var(--icon-color)
 }
 
 .task-item:hover .delete-btn {
@@ -290,20 +279,14 @@ h1 {
   text-align: right;
 }
 
-.tags-btn {
-  background-image: var(--tag-img);
+.tags-btn,.settings-btn, .history-btn, .time-display-btn {
+  /*background-image: var(--tag-img);*/
+  color: var(--icon-color);
+  font-size: 27px;
 }
 
 .settings-btn {
-  background-image: var(--settings-img);
-}
-
-.history-btn {
-  background-image: var(--calendar-img);
-}
-
-.time-display-btn {
-  background-image: var(--time-display-img);
+  font-size: 29px;
 }
 
 iframe {

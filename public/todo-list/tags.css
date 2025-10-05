@@ -6,18 +6,25 @@
   --task-item-bg: #e1e1e9;
   --border-color: #000000;
   --input-bg: #ffffff;
+  --icon-color: #000000;
+  --icon-bg: #ffffff;
 }
 
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
   src: url('Madeonmactrackpad-Regular.ttf') format('truetype');
 }
+@font-face {
+  font-family: 'Madeonmactrackpadicons-Regular';
+  src: url('Madeonmactrackpadicons-Regular.ttf') format('truetype');
+}
+
 
 * {
   box-sizing: border-box;
   margin: 3px;
   padding: 1px;
-  font-family: 'Madeonmactrackpad-Regular';
+  font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpadicons-Regular';
 }
 
 body {
@@ -102,16 +109,11 @@ p {
 .delete-tag{
   width: 25px;
   height: 25px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-image: var(--delete-img) !important;
-  display: inline-block;
-  background-color: transparent;
   border: none;
   font-size: 1.7rem;
   margin-right: 0px;
-  color:#e1e1e9;
+  background-color: transparent;
+  color:var(--text-color);
 }
 
 .delete-tag:hover{
