@@ -1,14 +1,3 @@
-:root {
-    --bg-color: #ffffff;
-    --text-color: #000000;
-    --container-bg: #ffffff;
-    --header-bg: #e1e1e9;
-    --task-item-bg: #e1e1e9;
-    --border-color: #000000;
-    --input-bg: #ffffff;
-    --icon-color: #000000;
-    --icon-bg: #ffffff;
-}
 
 .container {
     padding: 10px;
@@ -39,7 +28,7 @@
     color: var(--text-color);
 }
 
-#light-mode, #dark-mode, #original-theme {
+#light-mode, #dark-mode, #original-theme, #diary-theme {
     margin-left: 20px;
     height: 60px;
     width: 60px;
@@ -50,22 +39,37 @@
     background-repeat: no-repeat;
     border-radius: 5px;
     margin: 5px;
-    transition: transform 0.2s ease;
-    
+    transition: transform 0.2s ease; 
 }
-#original-theme{
+/* theme */
+.theme{
+    display: flex;
+    flex-direction: row;
+    margin-left: 120px;
+}
+#original-theme, #diary-theme{
     font-size: 2.5rem;
     font-family: 'Madeonmactrackpad-Regular';
     border: 1px var(--border-color) solid;
     background-color: var(--bg-color);
-    margin-left: 140px;
     color: var(--text-color);
 }
+#diary-theme{
+    background-image: url('../Icons/diary-theme.png');
 
+}
+.original, .diary {
+    margin: 5px 20px;
+}
 .original p{
-    margin-left: 145px;
+    margin-left: 10px;
+}
+.diary p{
+    margin-left: 5px;
 }
 
+
+/* mode */
 .mode{
     margin-left: 120px;
     display: flex;
@@ -85,6 +89,6 @@
     border: 1px var(--border-color) solid;
 }
 
-#light-mode:hover, #dark-mode:hover, #original-theme:hover {
+#light-mode:hover, #dark-mode:hover, #original-theme:hover, #diary-theme:hover {
     transform: scale(1.05);
 }

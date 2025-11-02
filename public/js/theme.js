@@ -22,6 +22,8 @@ const timeDisplayIconLight = `${BASE_PREFIX}/Icons/time-display.png`;
 
 export function applyTheme(theme) {
     const root = document.documentElement;
+    // reflect current theme for CSS selectors like html[data-theme="diary"]
+    root.setAttribute('data-theme', theme);
 
     if (theme === 'dark') {
         root.style.setProperty('--bg-color', '#1a1a1a');
@@ -68,11 +70,16 @@ export function applyTheme(theme) {
 document.addEventListener('DOMContentLoaded', function () {
     const currentTheme = localStorage.getItem('theme') || 'light';
     applyTheme(currentTheme);
+    const currentBg = localStorage.getItem('background') || 'none';
+    document.documentElement.setAttribute('data-background', currentBg);
 });
 
 window.addEventListener('storage', function (event) {
     if (event.key === 'theme') {
         applyTheme(event.newValue);
+    }
+    if (event.key === 'background') {
+        document.documentElement.setAttribute('data-background', event.newValue || 'none');
     }
 });
 

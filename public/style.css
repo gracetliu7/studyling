@@ -76,6 +76,21 @@ body {
   color: var(--text-color);
 }
 
+/* Diary backgrounds respect light/dark via data-theme + data-background */
+html[data-background="diary"][data-theme="light"] body {
+  background-image: url('./backgrounds/dilairyyy-bg-light.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+html[data-background="diary"][data-theme="dark"] body {
+  background-image: url('./backgrounds/dilairyyy-bg-dark.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
 
 .container {
   background-color: var(--bg-color);

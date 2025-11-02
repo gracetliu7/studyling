@@ -1,14 +1,3 @@
-:root {
-  --bg-color: #ffffff;
-  --text-color: #000000;
-  --container-bg: #ffffff;
-  --header-bg: #e1e1e9;
-  --task-item-bg: #e1e1e9;
-  --border-color: #000000;
-  --input-bg: #ffffff;
-  --icon-color: #000000;
-  --icon-bg: #ffffff;
-}
 
 @font-face {
   font-family: 'Madeonmactrackpad-Regular';
