@@ -76,7 +76,6 @@ body {
   color: var(--text-color);
 }
 
-/* Diary backgrounds respect light/dark via data-theme + data-background */
 html[data-background="diary"][data-theme="light"] body {
   background-image: url('./backgrounds/dilairyyy-bg-light.png');
   background-size: cover;
@@ -90,7 +89,6 @@ html[data-background="diary"][data-theme="dark"] body {
   background-repeat: no-repeat;
   background-position: center;
 }
-
 
 .container {
   background-color: var(--bg-color);
@@ -383,6 +381,20 @@ iframe {
 .tag-entry input[type="text"] {
   margin-right: 10px;
 }
+
+#mail-btn {
+  border-color: transparent;
+  position: absolute;
+  right: 100px;
+  top: 20px;
+  background-color: transparent;
+  font-size: 35px;
+}
+
+#mail-btn:hover {
+  transform: scale(1.1);
+}
+
 #ko-fi-container {
   margin-left: auto;
   text-align: right;

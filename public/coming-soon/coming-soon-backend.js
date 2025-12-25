@@ -52,7 +52,7 @@
       }
 
       if (code.toLowerCase() === "test") {
-        window.location.href = "../todo-list/todo-list.html";
+        window.location.href = "/";
 
           return;
       }
@@ -76,7 +76,7 @@
               tx.update(codeDocRef, { usedCount: current + 1 });
           });
 
-          window.location.href = "../todo-list/todo-list.html";
+          window.location.href = "/";
       } catch (error) {
           console.error("error validating code: ", error);
           alert("something went wrong, please try again");

@@ -32,6 +32,9 @@ document.addEventListener('DOMContentLoaded', function () {
     });
     localStorage.setItem('tasks', JSON.stringify(tasks));
 
+    // Drag and drop state
+    let dragSrcIndex = null;
+
 
     // Tag color management
     function getTagColor(tag) {
@@ -86,6 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
         taskItem.className = 'task-item';
         taskItem.id='task-item-'+index;
         taskItem.dataset.index = index;
+        taskItem.draggable = true;
 
         addTimerVisibilityToggle(taskItem, taskObj.text, taskObj.id);
 
@@ -171,6 +175,10 @@ document.addEventListener('DOMContentLoaded', function () {
             const activeTaskId = localStorage.getItem('activeTaskId');
             if (activeTaskId === tasks[index].id) {
                 localStorage.removeItem('activeTaskId');
+                const timerIframe = document.getElementById('timer-display');
+                if (timerIframe) {
+                    timerIframe.style.display = 'none';
+                }
             }
             e.stopPropagation();
             tasks = loadTasksFromLocalStorage();
@@ -179,6 +187,47 @@ document.addEventListener('DOMContentLoaded', function () {
             renderTasks();
             updateTaskCounters();
 
+        });
+
+        // Drag & drop handlers
+        taskItem.addEventListener('dragstart', function (e) {
+            dragSrcIndex = Number(taskItem.dataset.index);
+            e.dataTransfer.effectAllowed = 'move';
+            try { e.dataTransfer.setData('text/plain', dragSrcIndex.toString()); } catch (_) {}
+            taskItem.classList.add('dragging');
+        });
+
+        taskItem.addEventListener('dragend', function () {
+            taskItem.classList.remove('dragging');
+            taskItem.style.borderTop = '';
+        });
+
+        taskItem.addEventListener('dragover', function (e) {
+            e.preventDefault();
+            e.dataTransfer.dropEffect = 'move';
+            // simple visual indicator
+            taskItem.style.borderTop = '2px solid #c9c9c9';
+        });
+
+        taskItem.addEventListener('dragleave', function () {
+            taskItem.style.borderTop = '';
+        });
+
+        taskItem.addEventListener('drop', function (e) {
+            e.preventDefault();
+            taskItem.style.borderTop = '';
+            const fromIndex = dragSrcIndex !== null ? dragSrcIndex : Number(e.dataTransfer.getData('text/plain'));
+            const toIndex = Number(taskItem.dataset.index);
+            if (Number.isNaN(fromIndex) || Number.isNaN(toIndex) || fromIndex === toIndex) return;
+            const current = loadTasksFromLocalStorage();
+            if (fromIndex < 0 || fromIndex >= current.length || toIndex < 0 || toIndex >= current.length) return;
+            const [moved] = current.splice(fromIndex, 1);
+            current.splice(toIndex, 0, moved);
+            saveTasksToLocalStorage(current);
+            renderTasks();
+            updateTaskCounters();
+            sortTasks(); // keep completed at the bottom while preserving relative order
+            dragSrcIndex = null;
         });
 
         return taskItem;

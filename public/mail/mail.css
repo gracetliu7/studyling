@@ -1,0 +1,57 @@
+
+@font-face {
+    font-family: 'Madeonmactrackpad-Regular';
+    src: url('../Madeonmactrackpad-Regular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Madeonmactrackpadicons-Regular';
+    src: url('../Madeonmactrackpadicons-Regular.ttf') format('truetype');
+}
+  
+  
+* {
+    box-sizing: border-box;
+    margin: 3px;
+    padding: 1px;
+    font-family: 'Madeonmactrackpad-Regular', 'Madeonmactrackpadicons-Regular';
+}
+
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+#mail-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+} 
+.mail-item {
+    border: gray 0.7px solid;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    width: 500px;
+    height: 400px;
+}
+.mail-item textarea {
+    width: 475px;
+    height: 350px;
+    text-indent: 0px;
+    font-size: 15px;
+    resize: none;
+    -webkit-user-select: none;
+    user-select: none;
+    border: none;
+    align-self: center;
+     -webkit-tap-highlight-color: transparent;
+     caret-color: transparent;
+}
+.mail-item textarea:active {
+  border: transparent;
+}
+ .mail-item textarea:focus,
+ .mail-item textarea:focus-visible {
+   outline: none;
+   box-shadow: none;
+ }

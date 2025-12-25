@@ -3,13 +3,13 @@
 
 <head>
     <link rel="icon" href="../Icons/logo-nobg.png" type="image/png">
-    <link rel="stylesheet" href="../style.css">
-    <link rel="stylesheet" href="dropdown.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./todo-list/dropdown.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="../js/theme.js" type="module"></script>
-    <script src="todo-list.js" type="module"></script>
-    <script src="../js/time-display-visibility.js" type="module"></script>
+    <script src="./js/theme.js" type="module"></script>
+    <script src="./todo-list/todo-list.js" type="module"></script>
+    <script src="./js/time-display-visibility.js" type="module"></script>
     <title>studyling</title>
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2XMCEZZFY"></script>
@@ -23,22 +23,23 @@
 </head>
 
 <body>
+    <button id="mail-btn" onclick="window.location.href='../mail.html'">⊠</button>
     <div id="center-container">
     <div id="clock-wrapper">
-        <iframe src="../time-display/time-display.html" id="clock-display" style="display: none;"
+        <iframe src="../time-display.html" id="clock-display" style="display: none;"
             height="200px" width="275px"></iframe>
         <iframe src="../timers/timer.html" id="timer-display" style="display: none;"
             height="200px" width="350px"></iframe>
     </div>
     <div class="container">
         <header>
-            <h1>To Do List</h1>
+            <h1>To Do list</h1>
             <p class="subtitle">one task at a time! you can do it! ♡ </p>
             <div class="buttons">
-                <button class="tags-btn" onclick="window.location.href='tags.html'">⌦</button>
+                <button class="tags-btn" onclick="window.location.href='../tags.html'">⌦</button>
                 <button class="time-display-btn" id="time-display">◯</button>
-                <button class="history-btn" onclick="window.location.href='../history/history.html'">©</button>
-                <button class="settings-btn" onclick="window.location.href='../settings/settings.html'">§</button>
+                <button class="history-btn" onclick="window.location.href='../history.html'">©</button>
+                <button class="settings-btn" onclick="window.location.href='../settings.html'">§</button>
             </div>
         </header>
         <div class="app-body">
@@ -56,9 +57,7 @@
                     </div>
                 </div>
             </div>
-
             <ul id="task-list"></ul>
-
             <div class="stats">
                 <span id="total-tasks">Total: 0 tasks</span>
                 <button id="clear-tasks">Clear all completed tasks</button>
@@ -69,7 +68,7 @@
         <div class="footer">
             <div class="footer-left">
                 <p>made with ♡ by gracie</p>
-                <button id="learn-more" onclick="window.location.href='../about/about-page.html'">learn more</button>
+                <button id="learn-more" onclick="window.location.href='../about.html'">learn more</button>
                 <p style="color: darkgrey;">copyright 2025</p>
             </div>
             <div id="ko-fi-container">
