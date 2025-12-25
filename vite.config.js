@@ -13,7 +13,7 @@ export default defineConfig({
         settings: resolve(__dirname, 'public/settings.html'),
         tags: resolve(__dirname, 'public/tags.html'),
         mail: resolve(__dirname, 'public/mail.html'),
-        todoList: resolve(__dirname, 'public/todo-list/todo-list.html'),
+        todoList: resolve(__dirname, 'public/todo-list.html'),
         timeDisplay: resolve(__dirname, 'public/time-display.html'),
         timer: resolve(__dirname, 'public/timers/timer.html'),
         countdownTimer: resolve(__dirname, 'public/timers/countdown-timer.html'),
