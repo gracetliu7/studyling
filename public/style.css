@@ -389,6 +389,7 @@ iframe {
   top: 20px;
   background-color: transparent;
   font-size: 35px;
+  color: var(--text-color);
 }
 
 #mail-btn:hover {

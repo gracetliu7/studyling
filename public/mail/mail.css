@@ -46,6 +46,8 @@
     align-self: center;
      -webkit-tap-highlight-color: transparent;
      caret-color: transparent;
+    color: var(--text-color);
+    background-color: var(--bg-color);
 }
 .mail-item textarea:active {
   border: transparent;
